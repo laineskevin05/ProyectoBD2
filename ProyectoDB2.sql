@@ -17,7 +17,7 @@ CREATE TABLE RH_Empleado(
 	IdPersona nvarchar(15) NOT NULL, --Foreng key
 	TituloProfesional nvarchar(50) NOT NULL,
 	FechaDeCumpleanios date NOT NULL,
-	EstadoCivil nchar(1) NOT NULL CHECK (EstadoCivil IN('S', 'C', 'U', 'D', 'V')), -- S = Soltero/a, C = Casado/a, U = Unión libre o unión de hecho, D = Divorciado/a  V = Viudo/a.
+	EstadoCivil nchar(1) NOT NULL CHECK (EstadoCivil IN('Soltero(a)', 'Casado(a)', 'Union Libre', 'Divorciado(a)', 'Viudo(a)')),
 	Sexo nchar(1) NOT NULL CHECK (EstadoCivil IN('F', 'H')), --
 	FechaDeContratacion date NOT NULL,
 	HorasDeVacaciones smallint NOT NULL DEFAULT (0),
@@ -78,7 +78,6 @@ GO
 CREATE TABLE P_Persona(
 	IdPersona nvarchar(15) primary key NOT NULL, -- el id de la persona puede ser el dni o pasaporte
 
-	TipoDePersona nchar(2) NOT NULL, --Se podria poner cliente o empleado
 	PrimerNombre nvarchar(20) NOT NULL,
 	SegundoNombre nvarchar(20) NULL,
 	PrimerApellido nvarchar(20) NOT NULL,
@@ -97,6 +96,8 @@ CREATE TABLE P_PersonaTelefono(
 ) 
 GO
 
+
+
 --A = Administracion
 --En el inventario van los intrumentos o herramientas usadas en el hotel, por ejemplo cameras, herramientas para reparacion, etc.
 CREATE TABLE A_Inventario(
@@ -109,29 +110,24 @@ CREATE TABLE A_Inventario(
 )
 GO
 
-CREATE TABLE A_OrdenCompraInventario(
-	IdOrdenCompraUtencilio int IDENTITY(1,1) NOT NULL,
-
-	
-	IdEmpleado int NOT NULL, --llave foranea
-	IdInventario int,
-	Cantidad smallint NOT NULL,
-	PrecioTotal money NOT NULL,
-	Descipcion nvarchar(40) NULL,
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_OrdenCompraInventario_FechaDeModificacion  DEFAULT (getdate()),
-)
+-- Productos que se venderan a los clientes
+CREATE TABLE A_Producto(
+	IdProducto int IDENTITY(1,1) NOT NULL,
+	Nombre nvarchar(30) NOT NULL,
+	Precio_venta money NOT NULL,	Descripcion nvarchar(40) NULL,	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Producto_FechaDeModificacion  DEFAULT (getdate()),)
 GO
 
---Por ejemplo, la compra de vegetales, condimentos, y demas productos de un solo o varios usos uso.
-CREATE TABLE A_OrdenCompraProducto(
+--la orden de compra de cualquiera de las dos tablas, A_Inventario o A_Producto
+CREATE TABLE A_OrdenCompra(
 	IdOrdenCompraInventario int IDENTITY(1,1) NOT NULL,
 
 	IdEmpleado int NOT NULL, --llave foranea
-	Producto nvarchar(30) NOT NULL,
+	IdInventario int NULL,
+	IdProducto int NULL,
 	Cantidad smallint NOT NULL,
 	PrecioTotal money NOT NULL,
 	Descipcion nvarchar(40) NULL,
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_OrdenCompraProducto_FechaDeModificacion  DEFAULT (getdate()),
+	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_OrdenCompra_FechaDeModificacion  DEFAULT (getdate()),
 )
 GO
 
@@ -144,6 +140,18 @@ CREATE TABLE A_Habitaciones(
 	Estado nvarchar(20) check (Estado IN('Disponible','En Uso','En Mantenimiento')) NOT NULL,
 	Descripcion nvarchar(40) NULL,
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Habitaciones_FechaDeModificacion  DEFAULT (getdate()),
+)
+GO
+
+--V = Area de Ventas
+CREATE TABLE V_Reserva(
+	IdReserva int IDENTITY(1,1) NOT NULL,
+
+	IdHabitacion int NOT NULL,
+	IdPersona int NOT NULL,
+	IdEmpleado int NULL,
+	Fecha_ingresa date NOT NULL,
+	Fecha_sale date NOT NULL,	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Reserva_FechaDeModificacion  DEFAULT (getdate()),
 )
 GO
 
