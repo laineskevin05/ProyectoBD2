@@ -97,8 +97,8 @@ CREATE TABLE P_PersonaTelefono(
 ) 
 GO
 
-
-CREATE TABLE Utencilios(
+--A = Administracion
+CREATE TABLE A_Utencilios(
 	IdUtencilio int IDENTITY(1,1) NOT NULL,
 	Nombre nvarchar(30) NOT NULL,
 	NumeroDeSerie nvarchar(25) NOT NULL,
