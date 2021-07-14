@@ -117,7 +117,7 @@ CREATE TABLE A_OrdenCompraInventario(
 	IdInventario int,
 	Cantidad smallint NOT NULL,
 	PrecioTotal money NOT NULL,
-	Descipcion nvarchar(40),
+	Descipcion nvarchar(40) NULL,
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_OrdenCompraInventario_FechaDeModificacion  DEFAULT (getdate()),
 )
 GO
@@ -130,7 +130,7 @@ CREATE TABLE A_OrdenCompraProducto(
 	Producto nvarchar(30) NOT NULL,
 	Cantidad smallint NOT NULL,
 	PrecioTotal money NOT NULL,
-	Descipcion nvarchar(40),
+	Descipcion nvarchar(40) NULL,
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_OrdenCompraProducto_FechaDeModificacion  DEFAULT (getdate()),
 )
 GO
@@ -140,6 +140,10 @@ CREATE TABLE A_Habitaciones(
 
 	Numero smallint NOT NULL,
 	Piso smallint NOT NULL,
-
+	Precio money NULL,
+	Estado nvarchar(20) check (Estado IN('Disponible','En Uso','En Mantenimiento')) NOT NULL,
+	Descripcion nvarchar(40) NULL,
+	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Habitaciones_FechaDeModificacion  DEFAULT (getdate()),
 )
 GO
+
