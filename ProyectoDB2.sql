@@ -98,9 +98,9 @@ CREATE TABLE P_PersonaTelefono(
 GO
 
 --A = Administracion
---Los utencilios son los intrumentos o herramientas usadas en el otel, por ejemplo cameras, herramientas para reparacion, etc.
-CREATE TABLE A_Utencilios(
-	IdUtencilio int IDENTITY(1,1) NOT NULL,
+--En el inventario van los intrumentos o herramientas usadas en el hotel, por ejemplo cameras, herramientas para reparacion, etc.
+CREATE TABLE A_Inventario(
+	IdInventario int IDENTITY(1,1) NOT NULL,
 	Nombre nvarchar(30) NOT NULL,
 	cantidadExistencia smallint NOT NULL,
 	Tamanio nvarchar(12) NULL,
@@ -109,10 +109,27 @@ CREATE TABLE A_Utencilios(
 )
 GO
 
-CREATE TABLE A_OrdenCompraUtencilio(
+CREATE TABLE A_OrdenCompraInventario(
 	IdOrdenCompraUtencilio int IDENTITY(1,1) NOT NULL,
+
+	
+	IdEmpleado int NOT NULL, --llave foranea
+	IdInventario int,
 	Cantidad smallint NOT NULL,
+	PrecioTotal money NOT NULL,
+	Descipcion nvarchar(40),
+	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_OrdenCompraUtencilio_FechaDeModificacion  DEFAULT (getdate()),
+)
+GO
+
+--Por ejemplo, la compra de vegetales, condimentos, y demas productos de un solo o varios usos uso.
+CREATE TABLE A_OrdenCompraProducto(
+	IdOrdenCompraInventario int IDENTITY(1,1) NOT NULL,
+
+	
 	IdEmpleado int NOT NULL,
+	Producto nvarchar(30) NOT NULL,
+	Cantidad smallint NOT NULL,
 	PrecioTotal money NOT NULL,
 	Descipcion nvarchar(40),
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_OrdenCompraUtencilio_FechaDeModificacion  DEFAULT (getdate()),
