@@ -98,16 +98,14 @@ CREATE TABLE P_PersonaTelefono(
 GO
 
 --A = Administracion
+--Los utencilios son los intrumentos o herramientas usadas en el otel, por ejemplo cameras, herramientas para reparacion, etc.
 CREATE TABLE A_Utencilios(
 	IdUtencilio int IDENTITY(1,1) NOT NULL,
 	Nombre nvarchar(30) NOT NULL,
-	NumeroDeSerie nvarchar(25) NOT NULL,
-	Vendible BIT NOT NULL CONSTRAINT DF_Produccion_Vendible  DEFAULT ((1)),
-	Color nvarchar(15) NULL,
 	cantidadExistencia smallint NOT NULL,
 	Tamanio nvarchar(12) NULL,
-	TipoDeComponente nchar(15) NULL,
 	Descipcion nvarchar(40) NULL,
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Produccion_FechaDeModificacion  DEFAULT (getdate()),
 )
 GO
+
