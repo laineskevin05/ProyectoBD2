@@ -22,7 +22,7 @@ CREATE TABLE RH_Empleado(
 	FechaDeContratacion date NOT NULL,
 	HorasDeVacaciones smallint NOT NULL DEFAULT (0),
 	HorasPorEnfermedad smallint NOT NULL DEFAULT (0),
-	Estado varchar(15) NOT NULL CONSTRAINT DF_Empleado_Estado DEFAULT ((1)),
+	Estado varchar(15) NOT NULL CONSTRAINT DF_Empleado_Estado DEFAULT ('ACTIVO'),
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Empleado_FechaDeModificacion  DEFAULT (getdate()), 
 ) 
 GO
@@ -105,7 +105,7 @@ CREATE TABLE A_Inventario(
 	cantidadExistencia smallint NOT NULL,
 	Tamanio nvarchar(12) NULL,
 	Descipcion nvarchar(40) NULL,
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Utencilios_FechaDeModificacion  DEFAULT (getdate()),
+	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Inventario_FechaDeModificacion  DEFAULT (getdate()),
 )
 GO
 
@@ -118,7 +118,7 @@ CREATE TABLE A_OrdenCompraInventario(
 	Cantidad smallint NOT NULL,
 	PrecioTotal money NOT NULL,
 	Descipcion nvarchar(40),
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_OrdenCompraUtencilio_FechaDeModificacion  DEFAULT (getdate()),
+	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_OrdenCompraInventario_FechaDeModificacion  DEFAULT (getdate()),
 )
 GO
 
@@ -126,12 +126,20 @@ GO
 CREATE TABLE A_OrdenCompraProducto(
 	IdOrdenCompraInventario int IDENTITY(1,1) NOT NULL,
 
-	
-	IdEmpleado int NOT NULL,
+	IdEmpleado int NOT NULL, --llave foranea
 	Producto nvarchar(30) NOT NULL,
 	Cantidad smallint NOT NULL,
 	PrecioTotal money NOT NULL,
 	Descipcion nvarchar(40),
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_OrdenCompraUtencilio_FechaDeModificacion  DEFAULT (getdate()),
+	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_OrdenCompraProducto_FechaDeModificacion  DEFAULT (getdate()),
+)
+GO
+
+CREATE TABLE A_Habitaciones(
+	IdHabitacion int IDENTITY(1,1) NOT NULL,
+
+	Numero smallint NOT NULL,
+	Piso smallint NOT NULL,
+
 )
 GO
