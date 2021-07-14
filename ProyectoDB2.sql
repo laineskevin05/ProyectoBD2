@@ -34,7 +34,7 @@ CREATE TABLE RH_HistorialEmpleadoDepartamento(
 
 	FechaDeInicio date NOT NULL,
 	FechaDeFinalizacion date NULL,
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_EmpleadoDepartamentoHistorial_FechaDeModificacion  DEFAULT (getdate()),
+	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_HistorialEmpleadoDepartamento_FechaDeModificacion  DEFAULT (getdate()),
 	primary key (IdPersona, IdDepartamento, IdJornada)
 ) 
 GO
@@ -44,7 +44,7 @@ CREATE TABLE RH_Jornada(
 	Nombre varchar(15) NOT NULL,
 	HoraInicio time NOT NULL,
 	HoraSalida time NOT NULL,
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Turno_FechaDeModificacion  DEFAULT (getdate()),
+	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Jornada_FechaDeModificacion  DEFAULT (getdate()),
 ) 
 GO
 
@@ -55,7 +55,7 @@ CREATE TABLE RH_HistorialPagoEmpleado(
 	FechaDeCambioDePago datetime NOT NULL,
 	SalarioPoHora money NOT NULL,
 	FecuenciaDePago tinyint NOT NULL,
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_EmpleadoPagoHistorial_FechaDeModificacion  DEFAULT (getdate()),
+	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_HistorialPagoEmpleado_FechaDeModificacion  DEFAULT (getdate()),
 ) 
 GO
 
@@ -105,7 +105,16 @@ CREATE TABLE A_Utencilios(
 	cantidadExistencia smallint NOT NULL,
 	Tamanio nvarchar(12) NULL,
 	Descipcion nvarchar(40) NULL,
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Produccion_FechaDeModificacion  DEFAULT (getdate()),
+	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Utencilios_FechaDeModificacion  DEFAULT (getdate()),
 )
 GO
 
+CREATE TABLE A_OrdenCompraUtencilio(
+	IdOrdenCompraUtencilio int IDENTITY(1,1) NOT NULL,
+	Cantidad smallint NOT NULL,
+	IdEmpleado int NOT NULL,
+	PrecioTotal money NOT NULL,
+	Descipcion nvarchar(40),
+	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_OrdenCompraUtencilio_FechaDeModificacion  DEFAULT (getdate()),
+)
+GO
