@@ -1,10 +1,11 @@
-CREATE DATABASE Prueba1
+CREATE DATABASE Prueba2;
 Go
 
+USE Prueba2;
 
 -- RH = Recursos Humanos
 CREATE TABLE RH_Departamento(
-	DepartamentoID smallint IDENTITY(1,1) NOT NULL,
+	IdDepartamento smallint IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
 	Nombre nvarchar(30) NOT NULL,
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Departamento_FechaDeModificacion DEFAULT (getdate()),
@@ -13,13 +14,13 @@ CREATE TABLE RH_Departamento(
 GO
 
 CREATE TABLE RH_Empleado(
-	IdEmpleado int IDENTITY(1,1) NOT NULL ,
+	IdEmpleado int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
 	IdPersona nvarchar(15) NOT NULL, --LLave foranea a P_Persona
 	TituloProfesional nvarchar(50) NOT NULL,
 	FechaDeCumpleanios date NOT NULL,
 	EstadoCivil nvarchar(20) NOT NULL CHECK (EstadoCivil IN('Soltero(a)', 'Casado(a)', 'Union Libre', 'Divorciado(a)', 'Viudo(a)')),
-	Sexo nchar(1) NOT NULL CHECK (EstadoCivil IN('F', 'H')), --
+	Sexo nchar(1) NOT NULL CHECK (Sexo IN('F', 'H')), --
 	FechaDeContratacion date NOT NULL,
 	HorasDeVacaciones smallint NOT NULL DEFAULT (0),
 	HorasPorEnfermedad smallint NOT NULL DEFAULT (0),
@@ -43,7 +44,7 @@ GO
 
 --Cada dia es un nuevo turno.
 CREATE TABLE RH_Jornada(
-	IdJornada tinyint IDENTITY(1,1) NOT NULL,
+	IdJornada tinyint IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
 	Nombre nvarchar(15) NOT NULL,
 	HoraInicio time NOT NULL,
@@ -53,7 +54,7 @@ CREATE TABLE RH_Jornada(
 GO
 
 CREATE TABLE RH_HistorialPagoEmpleado(
-	Id int IDENTITY(1,1) NOT NULL,
+	Id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
 	IdPersona nvarchar(15) NOT NULL, --llave foranea a P_Persona
 	FechaDeCambioDePago datetime NOT NULL,
@@ -65,7 +66,7 @@ GO
 
 --P = Persona
 CREATE TABLE P_Direccion(
-	IdDireccion int IDENTITY(1,1) NOT NULL,
+	IdDireccion int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
 	IdPersona nvarchar(15) NOT NULL, --llave foranea a P_Persona
 	DireccionDescripcion1 nvarchar(60) NOT NULL,
@@ -80,7 +81,7 @@ GO
 
 
 CREATE TABLE P_Persona(
-	IdPersona nvarchar(15) primary key NOT NULL, -- el id de la persona puede ser el dni o pasaporte
+	IdPersona nvarchar(15) PRIMARY KEY NOT NULL, -- el id de la persona puede ser el dni o pasaporte
 
 	PrimerNombre nvarchar(20) NOT NULL,
 	SegundoNombre nvarchar(20) NULL,
@@ -93,7 +94,7 @@ GO
 
 --El telefono/s de la persona, ya sea cliente o empleado
 CREATE TABLE P_PersonaTelefono(
-	IdTelefono int IDENTITY(1,1) NOT NULL,
+	IdTelefono int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
 	IdPersona nvarchar(15) NOT NULL, --llave foranea a P_Persona
 	NumeroTelefono nvarchar(20) NOT NULL,
@@ -106,7 +107,7 @@ GO
 --A = Administracion
 --En el inventario van los intrumentos o herramientas usadas en el hotel, por ejemplo cameras, herramientas para reparacion, etc.
 CREATE TABLE A_Inventario(
-	IdInventario int IDENTITY(1,1) NOT NULL,
+	IdInventario int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
 	Nombre nvarchar(30) NOT NULL,
 	cantidadExistencia smallint NOT NULL,
@@ -118,7 +119,7 @@ GO
 
 -- Productos que se venderan a los clientes
 CREATE TABLE A_Producto(
-	IdProducto int IDENTITY(1,1) NOT NULL,
+	IdProducto int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
 	Nombre nvarchar(30) NOT NULL,
 	Precio_venta money NOT NULL,
@@ -129,7 +130,7 @@ GO
 
 --la orden de compra de cualquiera de las dos tablas, A_Inventario o A_Producto
 CREATE TABLE A_OrdenCompra(
-	IdOrdenCompraInventario int IDENTITY(1,1) NOT NULL,
+	IdOrdenCompraInventario int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
 	IdEmpleado int NOT NULL, --llave foranea a RH_Empleado
 	IdInventario int NULL, --llave foranea a A_Inventario
@@ -142,7 +143,7 @@ CREATE TABLE A_OrdenCompra(
 GO
 
 CREATE TABLE A_Habitaciones(
-	IdHabitacion int IDENTITY(1,1) NOT NULL,
+	IdHabitacion int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
 	Numero smallint NOT NULL,
 	Piso smallint NOT NULL,
@@ -155,10 +156,10 @@ GO
 
 --V = Area de Ventas
 CREATE TABLE V_Reserva(
-	IdReserva int IDENTITY(1,1) NOT NULL,
+	IdReserva int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
 	IdHabitacion int NOT NULL, --llave foranea a A_Habitaciones
-	IdPersona int NOT NULL, --llave foranea a P_Persona
+	IdPersona nvarchar(15) NOT NULL, --llave foranea a P_Persona
 	IdEmpleado int NULL, --llave foranea a RH_Empleado
 	Fecha_ingresa date NOT NULL,
 	Fecha_sale date NOT NULL,
@@ -170,7 +171,7 @@ GO
 
 --Cuando llega a recepcion y empieza a disfrutar del hospedaje
 CREATE TABLE V_Registro(
-	IdRegistro int IDENTITY(1,1) NOT NULL,
+	IdRegistro int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
 	IdEmpleado int NULL, --llave foranea a RH_Empleado
 	Fecha_ingreso datetime NOT NULL,
@@ -178,12 +179,12 @@ CREATE TABLE V_Registro(
 	SubTotal money NULL,
 	Decuento money NULL CONSTRAINT DF_Registro_Descuento DEFAULT (0),
 	Total nvarchar NULL, 
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Reserva_FechaDeModificacion  DEFAULT (getdate()),
+	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Registro_FechaDeModificacion  DEFAULT (getdate()),
 )
 GO
 
 CREATE TABLE V_Consumo(
-	IdConsumo int IDENTITY(1,1) NOT NULL,
+	IdConsumo int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
 	IdRegistro int NULL, --llave foranea a V_Registro
 	IdProducto int NOT NULL, --llave foranea a A_Producto
@@ -195,7 +196,7 @@ GO
 
 
 CREATE TABLE V_Pago(
-	IdPago int IDENTITY(1,1) NOT NULL,
+	IdPago int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
 	IdRegistro int NOT NULL, --llave foranea a V_Registro
 	Tipo_comprobante nvarchar(15) NOT NULL check (Tipo_comprobante IN('Normal','Con RTN')),
@@ -205,4 +206,35 @@ CREATE TABLE V_Pago(
 )
 GO
 
+
+ALTER TABLE RH_Empleado ADD FOREIGN KEY (IdPersona) REFERENCES P_Persona(IdPersona);
+GO
+ALTER TABLE RH_HistorialEmpleadoDepartamento ADD FOREIGN KEY (IdPersona) REFERENCES P_Persona(IdPersona);
+GO
+ALTER TABLE RH_HistorialEmpleadoDepartamento ADD FOREIGN KEY (IdDepartamento) REFERENCES RH_Departamento(IdDepartamento);
+GO
+ALTER TABLE RH_HistorialEmpleadoDepartamento ADD FOREIGN KEY (IdJornada) REFERENCES RH_Jornada(IdJornada);
+GO
+ALTER TABLE P_Direccion ADD FOREIGN KEY (IdPersona) REFERENCES P_Persona(IdPersona);
+GO
+ALTER TABLE P_PersonaTelefono ADD FOREIGN KEY (IdPersona) REFERENCES P_Persona(IdPersona);
+GO
+ALTER TABLE A_OrdenCompra ADD FOREIGN KEY (IdEmpleado) REFERENCES RH_Empleado(IdEmpleado);
+GO
+ALTER TABLE A_OrdenCompra ADD FOREIGN KEY (IdInventario) REFERENCES A_Inventario(IdInventario);
+GO
+ALTER TABLE A_OrdenCompra ADD FOREIGN KEY (IdProducto) REFERENCES A_Producto(IdProducto);
+GO
+ALTER TABLE V_Reserva ADD FOREIGN KEY (IdHabitacion) REFERENCES A_Habitaciones(IdHabitacion);
+GO
+ALTER TABLE V_Reserva ADD FOREIGN KEY (IdPersona) REFERENCES P_Persona(IdPersona);
+GO
+ALTER TABLE V_Reserva ADD FOREIGN KEY (IdEmpleado) REFERENCES RH_Empleado(IdEmpleado);
+GO
+ALTER TABLE V_Consumo ADD FOREIGN KEY (IdRegistro) REFERENCES V_Registro(IdRegistro);
+GO
+ALTER TABLE V_Consumo ADD FOREIGN KEY (IdProducto) REFERENCES A_Producto(IdProducto);
+GO
+ALTER TABLE V_Pago ADD FOREIGN KEY (IdRegistro) REFERENCES V_Registro(IdRegistro);
+GO
 
