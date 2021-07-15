@@ -1,11 +1,12 @@
-
+CREATE DATABASE Prueba1
+Go
 
 
 -- RH = Recursos Humanos
 CREATE TABLE RH_Departamento(
 	DepartamentoID smallint IDENTITY(1,1) NOT NULL,
 
-	Nombre varchar(30) NOT NULL,
+	Nombre nvarchar(30) NOT NULL,
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Departamento_FechaDeModificacion DEFAULT (getdate()),
 ) 
 
@@ -14,24 +15,24 @@ GO
 CREATE TABLE RH_Empleado(
 	IdEmpleado int IDENTITY(1,1) NOT NULL ,
 
-	IdPersona nvarchar(15) NOT NULL, --Foreng key
+	IdPersona nvarchar(15) NOT NULL, --LLave foranea a P_Persona
 	TituloProfesional nvarchar(50) NOT NULL,
 	FechaDeCumpleanios date NOT NULL,
-	EstadoCivil nchar(1) NOT NULL CHECK (EstadoCivil IN('Soltero(a)', 'Casado(a)', 'Union Libre', 'Divorciado(a)', 'Viudo(a)')),
+	EstadoCivil nvarchar(20) NOT NULL CHECK (EstadoCivil IN('Soltero(a)', 'Casado(a)', 'Union Libre', 'Divorciado(a)', 'Viudo(a)')),
 	Sexo nchar(1) NOT NULL CHECK (EstadoCivil IN('F', 'H')), --
 	FechaDeContratacion date NOT NULL,
 	HorasDeVacaciones smallint NOT NULL DEFAULT (0),
 	HorasPorEnfermedad smallint NOT NULL DEFAULT (0),
-	Estado varchar(15) NOT NULL CONSTRAINT DF_Empleado_Estado DEFAULT ('ACTIVO'),
+	Estado varchar(15) NOT NULL CHECK (Estado IN('Activo', 'En Vacaciones', 'Enfermo', 'Despedido')) CONSTRAINT DF_Empleado_Estado DEFAULT ('ACTIVO'),
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Empleado_FechaDeModificacion  DEFAULT (getdate()), 
 ) 
 GO
 
 --lleva el registro del historial de cambios de departamento y jornada de los empleados
 CREATE TABLE RH_HistorialEmpleadoDepartamento(
-	IdPersona nvarchar(15) NOT NULL, --llave foranea
-	IdDepartamento smallint NOT NULL, --llave foranea
-	IdJornada tinyint NOT NULL, --llave foranea
+	IdPersona nvarchar(15) NOT NULL, --llave foranea a P_Persona
+	IdDepartamento smallint NOT NULL, --llave foranea a RH_Departamento
+	IdJornada tinyint NOT NULL, --llave foranea a RH_Jornada
 
 	FechaDeInicio date NOT NULL,
 	FechaDeFinalizacion date NULL,
@@ -44,7 +45,7 @@ GO
 CREATE TABLE RH_Jornada(
 	IdJornada tinyint IDENTITY(1,1) NOT NULL,
 
-	Nombre varchar(15) NOT NULL,
+	Nombre nvarchar(15) NOT NULL,
 	HoraInicio time NOT NULL,
 	HoraSalida time NOT NULL,
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Jornada_FechaDeModificacion  DEFAULT (getdate()),
@@ -52,9 +53,9 @@ CREATE TABLE RH_Jornada(
 GO
 
 CREATE TABLE RH_HistorialPagoEmpleado(
-	Id int primary key,
+	Id int IDENTITY(1,1) NOT NULL,
 
-	IdPersona nvarchar(15) NOT NULL, --llave foranea
+	IdPersona nvarchar(15) NOT NULL, --llave foranea a P_Persona
 	FechaDeCambioDePago datetime NOT NULL,
 	SalarioPoHora money NOT NULL,
 	FecuenciaDePago tinyint NOT NULL,
@@ -66,13 +67,13 @@ GO
 CREATE TABLE P_Direccion(
 	IdDireccion int IDENTITY(1,1) NOT NULL,
 
-	IdPersona nvarchar(15) NOT NULL, --llave foranea
+	IdPersona nvarchar(15) NOT NULL, --llave foranea a P_Persona
 	DireccionDescripcion1 nvarchar(60) NOT NULL,
 	DireccionDescripcion2 nvarchar(60) NULL,
 	Ciudad nvarchar(30) NOT NULL,
 	Departamento_Estado nvarchar(30) NOT NULL,
 	Pais nvarchar(30) NOT NULL,
-	CodigoPostal nvarchar(15) NOT NULL,
+	CodigoPostal nvarchar(15) NULL,
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Direccion_FechaDeModificacion  DEFAULT (getdate()),
 )
 GO
@@ -94,7 +95,7 @@ GO
 CREATE TABLE P_PersonaTelefono(
 	IdTelefono int IDENTITY(1,1) NOT NULL,
 
-	IdPersona nvarchar(15) NOT NULL, --llave foranea
+	IdPersona nvarchar(15) NOT NULL, --llave foranea a P_Persona
 	NumeroTelefono nvarchar(20) NOT NULL,
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_PersonaTelefono_FechaDeModificacion  DEFAULT (getdate()),
 ) 
@@ -120,16 +121,19 @@ CREATE TABLE A_Producto(
 	IdProducto int IDENTITY(1,1) NOT NULL,
 
 	Nombre nvarchar(30) NOT NULL,
-	Precio_venta money NOT NULL,	Descripcion nvarchar(40) NULL,	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Producto_FechaDeModificacion  DEFAULT (getdate()),)
+	Precio_venta money NOT NULL,
+	Descripcion nvarchar(40) NULL,
+	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Producto_FechaDeModificacion  DEFAULT (getdate()),
+)
 GO
 
 --la orden de compra de cualquiera de las dos tablas, A_Inventario o A_Producto
 CREATE TABLE A_OrdenCompra(
 	IdOrdenCompraInventario int IDENTITY(1,1) NOT NULL,
 
-	IdEmpleado int NOT NULL, --llave foranea
-	IdInventario int NULL, --llave foranea
-	IdProducto int NULL, --llave foranea
+	IdEmpleado int NOT NULL, --llave foranea a RH_Empleado
+	IdInventario int NULL, --llave foranea a A_Inventario
+	IdProducto int NULL, --llave foranea a A_Producto
 	Cantidad smallint NOT NULL,
 	PrecioTotal money NOT NULL,
 	Descipcion nvarchar(40) NULL,
@@ -143,7 +147,7 @@ CREATE TABLE A_Habitaciones(
 	Numero smallint NOT NULL,
 	Piso smallint NOT NULL,
 	Precio money NULL,
-	Estado nvarchar(20) check (Estado IN('Disponible','En Uso','En Mantenimiento')) NOT NULL,
+	Estado nvarchar(20) NOT NULL check (Estado IN('Disponible','En Uso','En Mantenimiento')) CONSTRAINT DF_Habitaciones_Estado  DEFAULT ('Disponible'),
 	Descripcion nvarchar(40) NULL,
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Habitaciones_FechaDeModificacion  DEFAULT (getdate()),
 )
@@ -153,11 +157,14 @@ GO
 CREATE TABLE V_Reserva(
 	IdReserva int IDENTITY(1,1) NOT NULL,
 
-	IdHabitacion int NOT NULL, --llave foranea
-	IdPersona int NOT NULL, --llave foranea
-	IdEmpleado int NULL, --llave foranea
+	IdHabitacion int NOT NULL, --llave foranea a A_Habitaciones
+	IdPersona int NOT NULL, --llave foranea a P_Persona
+	IdEmpleado int NULL, --llave foranea a RH_Empleado
 	Fecha_ingresa date NOT NULL,
-	Fecha_sale date NOT NULL,	SubTotal money NULL,	Estado nvarchar NULL check (Estado IN('Activa','Cancelada')),	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Reserva_FechaDeModificacion  DEFAULT (getdate()),
+	Fecha_sale date NOT NULL,
+	SubTotal money NULL,
+	Estado nvarchar NOT NULL check (Estado IN('Activa','Cancelada')) CONSTRAINT DF_Reservacion_Estado  DEFAULT ('Activa'),
+	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Reserva_FechaDeModificacion  DEFAULT (getdate()),
 )
 GO
 
@@ -165,25 +172,37 @@ GO
 CREATE TABLE V_Registro(
 	IdRegistro int IDENTITY(1,1) NOT NULL,
 
-	IdEmpleado int NULL, --llave foranea
+	IdEmpleado int NULL, --llave foranea a RH_Empleado
 	Fecha_ingreso datetime NOT NULL,
-	Fecha_salida datetime NOT NULL,	SubTotal money NULL,	Decuento money NOT NULL CONSTRAINT DF_Registro_Descuento DEFAULT (0),	Total nvarchar NULL, 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Reserva_FechaDeModificacion  DEFAULT (getdate()),
+	Fecha_salida datetime NOT NULL,
+	SubTotal money NULL,
+	Decuento money NULL CONSTRAINT DF_Registro_Descuento DEFAULT (0),
+	Total nvarchar NULL, 
+	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Reserva_FechaDeModificacion  DEFAULT (getdate()),
 )
 GO
 
 CREATE TABLE V_Consumo(
 	IdConsumo int IDENTITY(1,1) NOT NULL,
 
-	IdRegistro int NULL, --llave foranea
-	IdProducto int NOT NULL, --llave foranea
+	IdRegistro int NULL, --llave foranea a V_Registro
+	IdProducto int NOT NULL, --llave foranea a A_Producto
 	Cantidad smallint NOT NULL,
-	Precio_total money NOT NULL,	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Consumo_FechaDeModificacion  DEFAULT (getdate()),)GOCREATE TABLE V_Pago(
+	Precio_total money NOT NULL,
+	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Consumo_FechaDeModificacion  DEFAULT (getdate()),
+)
+GO
+
+
+CREATE TABLE V_Pago(
 	IdPago int IDENTITY(1,1) NOT NULL,
 
-	IdRegistro int NOT NULL, --llave foranea
-	Tipo_comprobante nvarchar check (Tipo_comprobante IN('Normal','Con RTN')),
+	IdRegistro int NOT NULL, --llave foranea a V_Registro
+	Tipo_comprobante nvarchar(15) NOT NULL check (Tipo_comprobante IN('Normal','Con RTN')),
 	Total_pago money NOT NULL,
 	Fecha_pago datetime CONSTRAINT DF_pago_FechaDePago DEFAULT (getdate()),
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Pago_FechaDeModificacion  DEFAULT (getdate())
 )
 GO
+
+
