@@ -110,7 +110,7 @@ CREATE TABLE A_Inventario(
 	IdInventario int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
 	Nombre nvarchar(30) NOT NULL,
-	cantidadExistencia smallint NOT NULL,
+	cantidadExistencia smallint NOT NULL CHECK (cantidadExistencia >= 0),
 	Tamanio nvarchar(12) NULL,
 	Descipcion nvarchar(40) NULL,
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Inventario_FechaDeModificacion  DEFAULT (getdate()),
@@ -135,7 +135,7 @@ CREATE TABLE A_OrdenCompra(
 	IdEmpleado int NOT NULL, --llave foranea a RH_Empleado
 	IdInventario int NULL, --llave foranea a A_Inventario
 	IdProducto int NULL, --llave foranea a A_Producto
-	Cantidad smallint NOT NULL,
+	Cantidad smallint NOT NULL CHECK (Cantidad >= 0),
 	PrecioTotal money NOT NULL,
 	Descipcion nvarchar(40) NULL,
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_OrdenCompra_FechaDeModificacion  DEFAULT (getdate()),
@@ -188,7 +188,7 @@ CREATE TABLE V_Consumo(
 
 	IdRegistro int NULL, --llave foranea a V_Registro
 	IdProducto int NOT NULL, --llave foranea a A_Producto
-	Cantidad smallint NOT NULL,
+	Cantidad smallint NOT NULL CHECK (Cantidad >= 0),
 	Precio_total money NOT NULL,
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Consumo_FechaDeModificacion  DEFAULT (getdate()),
 )
