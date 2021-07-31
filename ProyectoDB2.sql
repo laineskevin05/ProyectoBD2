@@ -254,8 +254,8 @@ ALTER TABLE V_Consumo ADD FOREIGN KEY (IdProducto) REFERENCES A_Producto(IdProdu
 GO
 ALTER TABLE V_Pago ADD FOREIGN KEY (IdRegistro) REFERENCES V_Registro(IdRegistro);
 GO
-ALTER TABLE A_Mantenimiento FOREIGN KEY (IdMantenimiento) REFERENCES RH_Empleado(IdEmpleado);
+ALTER TABLE A_Mantenimiento FOREIGN KEY (IdEmpleado) REFERENCES RH_Empleado(IdEmpleado);
 GO
-ALTER TABLE A_Solicitud_Mantenimiento ADD FOREIGN KEY (IdSolicitudMantenimiento) REFERENCES A_Habitaciones(IdHabitacion);
+ALTER TABLE A_Solicitud_Mantenimiento ADD FOREIGN KEY (IdHabitacion) REFERENCES A_Habitaciones(IdHabitacion);
 GO
 
