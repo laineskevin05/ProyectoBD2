@@ -87,6 +87,7 @@ CREATE TABLE P_Persona(
 	SegundoNombre nvarchar(20) NULL,
 	PrimerApellido nvarchar(20) NOT NULL,
 	SegundoApellido nvarchar(20) NULL,
+	Tipo nvarchar(20) NOT NULL check (TIPO IN('Empleado','Cliente Natural','Cliente Juridico')) CONSTRAINT DF_Persona_Tipo DEFAULT ('Cliente Natural'),
 	InformacionAdicional nvarchar(60) NULL,
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Persona_FechaDeModificacion  DEFAULT (getdate()),
 )
@@ -102,20 +103,7 @@ CREATE TABLE P_PersonaTelefono(
 ) 
 GO
 
-
-
 --A = Administracion
---En el inventario van los intrumentos o herramientas usadas en el hotel, por ejemplo cameras, herramientas para reparacion, etc.
-CREATE TABLE A_Inventario(
-	IdInventario int IDENTITY(1,1) PRIMARY KEY NOT NULL,
-
-	Nombre nvarchar(30) NOT NULL,
-	cantidadExistencia smallint NOT NULL CHECK (cantidadExistencia >= 0),
-	Tamanio nvarchar(12) NULL,
-	Descipcion nvarchar(40) NULL,
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Inventario_FechaDeModificacion  DEFAULT (getdate()),
-)
-GO
 
 -- Productos que se venderan a los clientes
 CREATE TABLE A_Producto(
@@ -124,18 +112,30 @@ CREATE TABLE A_Producto(
 	Nombre nvarchar(30) NOT NULL,
 	Precio_venta money NOT NULL,
 	Descripcion nvarchar(40) NULL,
+	Categoria nvarchar(20) NULL,
+	Descipcion nvarchar(40) NULL,
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Producto_FechaDeModificacion  DEFAULT (getdate()),
 )
 GO
 
+
+--En el inventario van que puede usarse en el hotel y tambien los productos para consumo que vende el hotel.
+CREATE TABLE A_Inventario(
+	IdInventario int IDENTITY(1,1) PRIMARY KEY NOT NULL,
+
+	IdProducto int NOT NULL, --llave foranea a A_Producto
+	Nombre nvarchar(30) NOT NULL,
+	cantidadExistencia smallint NOT NULL CHECK (cantidadExistencia >= 0),
+	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Inventario_FechaDeModificacion  DEFAULT (getdate()),
+)
+GO
 --la orden de compra de cualquiera de las dos tablas, A_Inventario o A_Producto
 CREATE TABLE A_OrdenCompra(
 	IdOrdenCompraInventario int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
 	IdEmpleado int NOT NULL, --llave foranea a RH_Empleado
 	IdInventario int NULL, --llave foranea a A_Inventario
-	IdProducto int NULL, --llave foranea a A_Producto
-	Cantidad smallint NOT NULL CHECK (Cantidad >= 0),
+	Cantidad smallint NOT NULL CHECK (Cantidad >= 1),
 	PrecioTotal money NOT NULL,
 	Descipcion nvarchar(40) NULL,
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_OrdenCompra_FechaDeModificacion  DEFAULT (getdate()),
@@ -148,6 +148,7 @@ CREATE TABLE A_Habitaciones(
 	Numero smallint NOT NULL,
 	Piso smallint NOT NULL,
 	Precio money NULL,
+	Categoria nvarchar(20) NOT NULL check (Categoria IN('Una Cama','Dos Camas','Tres Cama', 'Cuatro Camas')),
 	Estado nvarchar(20) NOT NULL check (Estado IN('Disponible','En Uso','En Mantenimiento')) CONSTRAINT DF_Habitaciones_Estado  DEFAULT ('Disponible'),
 	Descripcion nvarchar(40) NULL,
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Habitaciones_FechaDeModificacion  DEFAULT (getdate()),
@@ -158,16 +159,24 @@ GO
 CREATE TABLE V_Reserva(
 	IdReserva int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
-	IdHabitacion int NOT NULL, --llave foranea a A_Habitaciones
 	IdPersona nvarchar(15) NOT NULL, --llave foranea a P_Persona
 	IdEmpleado int NULL, --llave foranea a RH_Empleado
 	Fecha_ingresa date NOT NULL,
 	Fecha_sale date NOT NULL,
-	SubTotal money NULL,
 	Estado nvarchar NOT NULL check (Estado IN('Activa','Cancelada')) CONSTRAINT DF_Reservacion_Estado  DEFAULT ('Activa'),
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Reserva_FechaDeModificacion  DEFAULT (getdate()),
 )
 GO
+
+--La Lista de habitaciones reservadas en una reservacion
+CREATE TABLE V_ListaHabitacionesPorReserva(
+	Id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
+
+	IdReserva int NOT NULL, --llave foranea a V_Reserva
+	IdHabitacion int NOT NULL, --llave foranea a A_Habitaciones
+)
+GO
+
 
 --Cuando llega a recepcion y empieza a disfrutar del hospedaje
 CREATE TABLE V_Registro(
@@ -176,9 +185,7 @@ CREATE TABLE V_Registro(
 	IdEmpleado int NULL, --llave foranea a RH_Empleado
 	Fecha_ingreso datetime NOT NULL,
 	Fecha_salida datetime NOT NULL,
-	SubTotal money NULL,
-	Decuento money NULL CONSTRAINT DF_Registro_Descuento DEFAULT (0),
-	Total nvarchar NULL, 
+	SubTotal money NULL, -- Es el subtotal de la 1 o mas habitraciones en la reservacion, con los consumos, sin incluir descuentos e impuestos.
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Registro_FechaDeModificacion  DEFAULT (getdate()),
 )
 GO
@@ -200,7 +207,9 @@ CREATE TABLE V_Pago(
 
 	IdRegistro int NOT NULL, --llave foranea a V_Registro
 	Tipo_comprobante nvarchar(15) NOT NULL check (Tipo_comprobante IN('Normal','Con RTN')),
-	Total_pago money NOT NULL,
+	Descuento money NULL CONSTRAINT DF_Registro_Descuento DEFAULT (0),
+	Impuesto money NULL, 
+	Total_pago money NULL,
 	Fecha_pago datetime CONSTRAINT DF_pago_FechaDePago DEFAULT (getdate()),
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Pago_FechaDeModificacion  DEFAULT (getdate())
 )
@@ -219,17 +228,19 @@ ALTER TABLE P_Direccion ADD FOREIGN KEY (IdPersona) REFERENCES P_Persona(IdPerso
 GO
 ALTER TABLE P_PersonaTelefono ADD FOREIGN KEY (IdPersona) REFERENCES P_Persona(IdPersona);
 GO
+ALTER TABLE A_Inventario ADD FOREIGN KEY (IdProducto) REFERENCES A_Producto(IdProducto);
+GO
 ALTER TABLE A_OrdenCompra ADD FOREIGN KEY (IdEmpleado) REFERENCES RH_Empleado(IdEmpleado);
 GO
-ALTER TABLE A_OrdenCompra ADD FOREIGN KEY (IdInventario) REFERENCES A_Inventario(IdInventario);
-GO
 ALTER TABLE A_OrdenCompra ADD FOREIGN KEY (IdProducto) REFERENCES A_Producto(IdProducto);
-GO
-ALTER TABLE V_Reserva ADD FOREIGN KEY (IdHabitacion) REFERENCES A_Habitaciones(IdHabitacion);
 GO
 ALTER TABLE V_Reserva ADD FOREIGN KEY (IdPersona) REFERENCES P_Persona(IdPersona);
 GO
 ALTER TABLE V_Reserva ADD FOREIGN KEY (IdEmpleado) REFERENCES RH_Empleado(IdEmpleado);
+GO
+ALTER TABLE V_ListaHabitacionesPorReserva ADD FOREIGN KEY (IdReserva) REFERENCES V_Reserva(IdReserva);
+GO
+ALTER TABLE V_ListaHabitacionesPorReserva ADD FOREIGN KEY (IdHabitacion) REFERENCES A_Habitaciones(IdHabitacion);
 GO
 ALTER TABLE V_Consumo ADD FOREIGN KEY (IdRegistro) REFERENCES V_Registro(IdRegistro);
 GO
