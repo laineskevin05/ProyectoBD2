@@ -8,7 +8,6 @@ CREATE TABLE RH_Departamento(
 	IdDepartamento smallint IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
 	Nombre nvarchar(30) NOT NULL,
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Departamento_FechaDeModificacion DEFAULT (getdate()),
 ) 
 
 GO
@@ -25,7 +24,6 @@ CREATE TABLE RH_Empleado(
 	HorasDeVacaciones smallint NOT NULL DEFAULT (0),
 	HorasPorEnfermedad smallint NOT NULL DEFAULT (0),
 	Estado varchar(15) NOT NULL CHECK (Estado IN('Activo', 'En Vacaciones', 'Enfermo', 'Despedido')) CONSTRAINT DF_Empleado_Estado DEFAULT ('ACTIVO'),
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Empleado_FechaDeModificacion  DEFAULT (getdate()), 
 ) 
 GO
 
@@ -37,7 +35,6 @@ CREATE TABLE RH_HistorialEmpleadoDepartamento(
 
 	FechaDeInicio date NOT NULL,
 	FechaDeFinalizacion date NULL,
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_HistorialEmpleadoDepartamento_FechaDeModificacion  DEFAULT (getdate()),
 	PRIMARY KEY(IdPersona, IdDepartamento, IdJornada)
 ) 
 GO
@@ -49,18 +46,17 @@ CREATE TABLE RH_Jornada(
 	Nombre nvarchar(15) NOT NULL,
 	HoraInicio time NOT NULL,
 	HoraSalida time NOT NULL,
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Jornada_FechaDeModificacion  DEFAULT (getdate()),
 ) 
 GO
 
+--Esta tabla sera llenada por medio de un Trigger
 CREATE TABLE RH_HistorialPagoEmpleado(
 	Id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
 	IdPersona nvarchar(15) NOT NULL, --llave foranea a P_Persona
-	FechaDeCambioDePago datetime NOT NULL,
+	FechaDeCambioDePago datetime NOT NULL CONSTRAINT DF_HistorialPagoEmpleado_FechaDeCambioDePago  DEFAULT (getdate()),
 	SalarioPoHora money NOT NULL,
-	FecuenciaDePago tinyint NOT NULL,
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_HistorialPagoEmpleado_FechaDeModificacion  DEFAULT (getdate()),
+	FecuenciaDePago tinyint NOT NULL
 ) 
 GO
 
@@ -75,7 +71,6 @@ CREATE TABLE P_Direccion(
 	Departamento_Estado nvarchar(30) NOT NULL,
 	Pais nvarchar(30) NOT NULL,
 	CodigoPostal nvarchar(15) NULL,
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Direccion_FechaDeModificacion  DEFAULT (getdate()),
 )
 GO
 
@@ -89,7 +84,6 @@ CREATE TABLE P_Persona(
 	SegundoApellido nvarchar(20) NULL,
 	Tipo nvarchar(20) NOT NULL check (TIPO IN('Empleado','Cliente Natural','Cliente Juridico')) CONSTRAINT DF_Persona_Tipo DEFAULT ('Cliente Natural'),
 	InformacionAdicional nvarchar(60) NULL,
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Persona_FechaDeModificacion  DEFAULT (getdate()),
 )
 GO
 
@@ -99,7 +93,6 @@ CREATE TABLE P_PersonaTelefono(
 
 	IdPersona nvarchar(15) NOT NULL, --llave foranea a P_Persona
 	NumeroTelefono nvarchar(20) NOT NULL,
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_PersonaTelefono_FechaDeModificacion  DEFAULT (getdate()),
 ) 
 GO
 
@@ -125,8 +118,7 @@ CREATE TABLE A_Inventario(
 
 	IdProducto int NOT NULL, --llave foranea a A_Producto
 	Nombre nvarchar(30) NOT NULL,
-	cantidadExistencia smallint NOT NULL CHECK (cantidadExistencia >= 0),
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Inventario_FechaDeModificacion  DEFAULT (getdate()),
+	CantidadExistencia int NOT NULL CHECK (cantidadExistencia >= 0),
 )
 GO
 --la orden de compra de cualquiera de las dos tablas, A_Inventario o A_Producto
@@ -136,9 +128,9 @@ CREATE TABLE A_OrdenCompra(
 	IdEmpleado int NOT NULL, --llave foranea a RH_Empleado
 	IdInventario int NULL, --llave foranea a A_Inventario
 	Cantidad smallint NOT NULL CHECK (Cantidad >= 1),
+	Fecha datetime NOT NULL CONSTRAINT DF_OrdenCompra_Fecha DEFAULT (getdate()),
 	PrecioTotal money NOT NULL,
 	Descipcion nvarchar(40) NULL,
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_OrdenCompra_FechaDeModificacion  DEFAULT (getdate()),
 )
 GO
 
@@ -148,7 +140,7 @@ CREATE TABLE A_Solicitud_Mantenimiento(
 	Fecha_Solicitud DATETIME NOT NULL, 
 	
 	IdHabitacion INT NULL, --llave foranea a A_Habitaciones
-	Estado nvarchar(20) NOT NULL check (Estado IN('Pendiente','Realizado')) CONSTAINT DF_Solicitud_Estado DEFAULT('Pendiente')
+	Estado nvarchar(20) NOT NULL check (Estado IN('Pendiente','Realizado')) CONSTRAINT DF_Solicitud_Estado DEFAULT('Pendiente')
 )
 GO
 
@@ -169,7 +161,6 @@ CREATE TABLE A_Habitaciones(
 	Categoria nvarchar(20) NOT NULL check (Categoria IN('Una Cama','Dos Camas','Tres Cama', 'Cuatro Camas')),
 	Estado nvarchar(20) NOT NULL check (Estado IN('Disponible','En Uso','En Mantenimiento')) CONSTRAINT DF_Habitaciones_Estado  DEFAULT ('Disponible'),
 	Descripcion nvarchar(40) NULL,
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Habitaciones_FechaDeModificacion  DEFAULT (getdate()),
 )
 GO
 
@@ -182,7 +173,6 @@ CREATE TABLE V_Reserva(
 	Fecha_ingresa date NOT NULL,
 	Fecha_sale date NOT NULL,
 	Estado nvarchar NOT NULL check (Estado IN('Activa','Cancelada')) CONSTRAINT DF_Reservacion_Estado  DEFAULT ('Activa'),
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Reserva_FechaDeModificacion  DEFAULT (getdate()),
 )
 GO
 
@@ -201,10 +191,9 @@ CREATE TABLE V_Registro(
 	IdRegistro int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
 	IdEmpleado int NULL, --llave foranea a RH_Empleado
-	Fecha_ingreso datetime NOT NULL,
+	Fecha_ingreso datetime NOT NULL CONSTRAINT DF_Registro_FechaDeIngreso  DEFAULT (getdate()),,
 	Fecha_salida datetime NOT NULL,
 	SubTotal money NULL, -- Es el subtotal de la 1 o mas habitraciones en la reservacion, con los consumos, sin incluir descuentos e impuestos.
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Registro_FechaDeModificacion  DEFAULT (getdate()),
 )
 GO
 
@@ -215,7 +204,7 @@ CREATE TABLE V_Consumo(
 	IdProducto int NOT NULL, --llave foranea a A_Producto
 	Cantidad smallint NOT NULL CHECK (Cantidad >= 0),
 	Precio_total money NOT NULL,
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Consumo_FechaDeModificacion  DEFAULT (getdate()),
+	Fecha datetime NOT NULL CONSTRAINT DF_Consumo_Fecha  DEFAULT (getdate()),
 )
 GO
 
@@ -225,11 +214,11 @@ CREATE TABLE V_Pago(
 
 	IdRegistro int NOT NULL, --llave foranea a V_Registro
 	Tipo_comprobante nvarchar(15) NOT NULL check (Tipo_comprobante IN('Normal','Con RTN')),
+	RTN nvarchar(15) NULL,
 	Descuento money NULL CONSTRAINT DF_Registro_Descuento DEFAULT (0),
 	Impuesto money NULL, 
 	Total_pago money NULL,
 	Fecha_pago datetime CONSTRAINT DF_pago_FechaDePago DEFAULT (getdate()),
-	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Pago_FechaDeModificacion  DEFAULT (getdate())
 )
 GO
 
