@@ -148,12 +148,13 @@ CREATE TABLE A_Solicitud_Mantenimiento(
 	Fecha_Solicitud DATETIME NOT NULL, 
 	
 	IdHabitacion INT NULL, --llave foranea a A_Habitaciones
-	Estado NOT NULL check (Estado IN('Pendiente','Realizado')) CONSTAINT DF_Solicitud_Estado DEFAULT('Pendiente')
+	Estado nvarchar(20) NOT NULL check (Estado IN('Pendiente','Realizado')) CONSTAINT DF_Solicitud_Estado DEFAULT('Pendiente')
 )
 GO
 
 CREATE TABLE A_Mantenimiento(
 	IdMantenimiento int IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	IdSolicitudMantenimiento int NOT NULL,--llave foranea a A_Solicitud_Mantenimiento
 	IdEmpleado INT NOT NULL, --llave foranea a RH_Empleado,
 	Fecha_Realizacion DATETIME NOT NULL,
 	Descripcion nvarchar(50),
@@ -254,8 +255,9 @@ ALTER TABLE V_Consumo ADD FOREIGN KEY (IdProducto) REFERENCES A_Producto(IdProdu
 GO
 ALTER TABLE V_Pago ADD FOREIGN KEY (IdRegistro) REFERENCES V_Registro(IdRegistro);
 GO
-ALTER TABLE A_Mantenimiento FOREIGN KEY (IdEmpleado) REFERENCES RH_Empleado(IdEmpleado);
+ALTER TABLE A_Mantenimiento ADD FOREIGN KEY (IdEmpleado) REFERENCES RH_Empleado(IdEmpleado);
 GO
 ALTER TABLE A_Solicitud_Mantenimiento ADD FOREIGN KEY (IdHabitacion) REFERENCES A_Habitaciones(IdHabitacion);
 GO
-
+ALTER TABLE A_Mantenimiento ADD FOREIGN KEY (IdSolicitudMantenimiento) REFERENCES A_Solicitud_Mantenimiento(IdSolicitudMantenimiento);
+GO
