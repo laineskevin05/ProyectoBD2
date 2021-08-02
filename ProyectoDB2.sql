@@ -191,7 +191,7 @@ CREATE TABLE V_Registro(
 	IdRegistro int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
 	IdEmpleado int NULL, --llave foranea a RH_Empleado
-	Fecha_ingreso datetime NOT NULL CONSTRAINT DF_Registro_FechaDeIngreso  DEFAULT (getdate()),,
+	Fecha_ingreso datetime NOT NULL CONSTRAINT DF_Registro_FechaDeIngreso  DEFAULT (getdate()),
 	Fecha_salida datetime NOT NULL,
 	SubTotal money NULL, -- Es el subtotal de la 1 o mas habitraciones en la reservacion, con los consumos, sin incluir descuentos e impuestos.
 )
@@ -239,7 +239,7 @@ ALTER TABLE A_Inventario ADD FOREIGN KEY (IdProducto) REFERENCES A_Producto(IdPr
 GO
 ALTER TABLE A_OrdenCompra ADD FOREIGN KEY (IdEmpleado) REFERENCES RH_Empleado(IdEmpleado);
 GO
-ALTER TABLE A_OrdenCompra ADD FOREIGN KEY (IdProducto) REFERENCES A_Producto(IdProducto);
+ALTER TABLE A_OrdenCompra ADD FOREIGN KEY (IdInventario) REFERENCES A_Inventario(IdInventario);
 GO
 ALTER TABLE V_Reserva ADD FOREIGN KEY (IdPersona) REFERENCES P_Persona(IdPersona);
 GO
@@ -261,3 +261,4 @@ ALTER TABLE A_Solicitud_Mantenimiento ADD FOREIGN KEY (IdHabitacion) REFERENCES 
 GO
 ALTER TABLE A_Mantenimiento ADD FOREIGN KEY (IdSolicitudMantenimiento) REFERENCES A_Solicitud_Mantenimiento(IdSolicitudMantenimiento);
 GO
+
