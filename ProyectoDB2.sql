@@ -170,10 +170,11 @@ CREATE TABLE V_Reserva(
 
 	IdPersona nvarchar(15) NOT NULL, --llave foranea a P_Persona
 	IdEmpleado int NULL, --llave foranea a RH_Empleado
-	Fecha_ingresa date NOT NULL,
-	Fecha_sale date NOT NULL,
-	NumeroHabitaciones smallint NULL CONSTRAINT DF_Reserva_Numero  DEFAULT (), --sera llenada por medio de triggers y se sumara +1 por cada nuevo registro en ListaHabitacionesPorReserva
+	Fecha_ingresa datetime NOT NULL,
+	Fecha_sale datetime NOT NULL,
+	NumeroDeHabitaciones smallint NULL CONSTRAINT DF_Reserva_Numero  DEFAULT (), --sera llenada por medio de triggers y se sumara +1 por cada nuevo registro en ListaHabitacionesPorReserva
 	Estado nvarchar NOT NULL check (Estado IN('Activa','Cancelada')) CONSTRAINT DF_Reservacion_Estado  DEFAULT ('Activa'),
+	SubTotal money NULL, -- Es el subtotal de la 1 o mas habitraciones en la reservacion, con los consumos, sin incluir descuentos e impuestos.
 )
 GO
 
@@ -187,21 +188,11 @@ CREATE TABLE V_ListaHabitacionesPorReserva(
 GO
 
 
---Cuando llega a recepcion y empieza a disfrutar del hospedaje
-CREATE TABLE V_Registro(
-	IdRegistro int IDENTITY(1,1) PRIMARY KEY NOT NULL,
-
-	IdEmpleado int NULL, --llave foranea a RH_Empleado
-	Fecha_ingreso datetime NOT NULL CONSTRAINT DF_Registro_FechaDeIngreso  DEFAULT (getdate()),
-	Fecha_salida datetime NOT NULL,
-	SubTotal money NULL, -- Es el subtotal de la 1 o mas habitraciones en la reservacion, con los consumos, sin incluir descuentos e impuestos.
-)
-GO
 
 CREATE TABLE V_Consumo(
 	IdConsumo int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
-	IdRegistro int NULL, --llave foranea a V_Registro
+	IdReserva int NULL, --llave foranea a V_Reserva
 	IdProducto int NOT NULL, --llave foranea a A_Producto
 	Cantidad smallint NOT NULL CHECK (Cantidad >= 0),
 	Precio_total money NOT NULL,
@@ -213,7 +204,7 @@ GO
 CREATE TABLE V_Pago(
 	IdPago int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
-	IdRegistro int NOT NULL, --llave foranea a V_Registro
+	IdReserva int NOT NULL, --llave foranea a V_Reserva
 	Tipo_comprobante nvarchar(15) NOT NULL check (Tipo_comprobante IN('Normal','Con RTN')),
 	RTN nvarchar(15) NULL,
 	Descuento money NULL CONSTRAINT DF_Registro_Descuento DEFAULT (0),
@@ -250,11 +241,11 @@ ALTER TABLE V_ListaHabitacionesPorReserva ADD FOREIGN KEY (IdReserva) REFERENCES
 GO
 ALTER TABLE V_ListaHabitacionesPorReserva ADD FOREIGN KEY (IdHabitacion) REFERENCES A_Habitaciones(IdHabitacion);
 GO
-ALTER TABLE V_Consumo ADD FOREIGN KEY (IdRegistro) REFERENCES V_Registro(IdRegistro);
+ALTER TABLE V_Consumo ADD FOREIGN KEY (IdReserva) REFERENCES V_Reserva(IdReserva);
 GO
 ALTER TABLE V_Consumo ADD FOREIGN KEY (IdProducto) REFERENCES A_Producto(IdProducto);
 GO
-ALTER TABLE V_Pago ADD FOREIGN KEY (IdRegistro) REFERENCES V_Registro(IdRegistro);
+ALTER TABLE V_Pago ADD FOREIGN KEY (IdReserva) REFERENCES V_Reserva(IdReserva);
 GO
 ALTER TABLE A_Mantenimiento ADD FOREIGN KEY (IdEmpleado) REFERENCES RH_Empleado(IdEmpleado);
 GO
