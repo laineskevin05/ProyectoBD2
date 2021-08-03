@@ -136,10 +136,11 @@ GO
 
 CREATE TABLE A_Solicitud_Mantenimiento(
 	IdSolicitudMantenimiento int IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	Descripcion nvarchar(100) NOT NULL,
-	Fecha_Solicitud DATETIME NOT NULL, 
-	
 	IdHabitacion INT NULL, --llave foranea a A_Habitaciones
+
+	Fecha_Solicitud DATETIME NOT NULL, 
+	TipoSolicitud nvarchar(30) NOT NULL,
+	Descripcion nvarchar(100) NOT NULL,
 	Estado nvarchar(20) NOT NULL check (Estado IN('Pendiente','Realizado')) CONSTRAINT DF_Solicitud_Estado DEFAULT('Pendiente')
 )
 GO
@@ -208,7 +209,7 @@ CREATE TABLE V_Pago(
 	Tipo_comprobante nvarchar(15) NOT NULL check (Tipo_comprobante IN('Normal','Con RTN')),
 	RTN nvarchar(15) NULL,
 	Descuento money NULL CONSTRAINT DF_Registro_Descuento DEFAULT (0),
-	Impuesto money NULL, 
+	Impuesto money NULL,
 	Total_pago money NULL,
 	Fecha_pago datetime CONSTRAINT DF_pago_FechaDePago DEFAULT (getdate()),
 )
