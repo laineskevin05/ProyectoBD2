@@ -136,8 +136,8 @@ GO
 
 CREATE TABLE A_Solicitud_Mantenimiento(
 	IdSolicitudMantenimiento int IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	IdHabitacion INT NULL, --llave foranea a A_Habitaciones
 
+	IdHabitacion INT NULL, --llave foranea a A_Habitaciones, es null si no se dio en una habitacion
 	Fecha_Solicitud DATETIME NOT NULL, 
 	TipoSolicitud nvarchar(30) NOT NULL,
 	Descripcion nvarchar(100) NOT NULL,
@@ -147,6 +147,7 @@ GO
 
 CREATE TABLE A_Mantenimiento(
 	IdMantenimiento int IDENTITY(1,1) PRIMARY KEY NOT NULL,
+
 	IdSolicitudMantenimiento int NOT NULL,--llave foranea a A_Solicitud_Mantenimiento
 	IdEmpleado INT NOT NULL, --llave foranea a RH_Empleado,
 	Fecha_Realizacion DATETIME NOT NULL,
@@ -187,7 +188,6 @@ CREATE TABLE V_ListaHabitacionesPorReserva(
 	IdHabitacion int NOT NULL, --llave foranea a A_Habitaciones
 )
 GO
-
 
 
 CREATE TABLE V_Consumo(
