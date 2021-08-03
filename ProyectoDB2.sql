@@ -1,7 +1,7 @@
-CREATE DATABASE Prueba2;
+CREATE DATABASE Hotel_OLTP;
 Go
 
-USE Prueba2;
+USE Hotel_OLTP;
 
 -- RH = Recursos Humanos
 CREATE TABLE RH_Departamento(
@@ -174,7 +174,7 @@ CREATE TABLE V_Reserva(
 	IdEmpleado int NULL, --llave foranea a RH_Empleado
 	Fecha_ingreso datetime NOT NULL,
 	Fecha_sale datetime NOT NULL,
-	NumeroDeHabitaciones smallint NULL CONSTRAINT DF_Reserva_Numero  DEFAULT (), --sera llenada por medio de triggers y se sumara +1 por cada nuevo registro en ListaHabitacionesPorReserva
+	NumeroDeHabitaciones smallint NULL CONSTRAINT DF_Reserva_Numero  DEFAULT (0), --sera llenada por medio de triggers y se sumara +1 por cada nuevo registro en ListaHabitacionesPorReserva
 	Estado nvarchar NOT NULL check (Estado IN('Activa','Cancelada')) CONSTRAINT DF_Reservacion_Estado  DEFAULT ('Activa'),
 	SubTotal money NULL, -- Es el subtotal de la 1 o mas habitraciones en la reservacion, con los consumos, sin incluir descuentos e impuestos.
 )
