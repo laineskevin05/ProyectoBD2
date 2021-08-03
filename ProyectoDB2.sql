@@ -172,6 +172,7 @@ CREATE TABLE V_Reserva(
 	IdEmpleado int NULL, --llave foranea a RH_Empleado
 	Fecha_ingresa date NOT NULL,
 	Fecha_sale date NOT NULL,
+	NumeroHabitaciones smallint NULL CONSTRAINT DF_Reserva_Numero  DEFAULT (), --sera llenada por medio de triggers y se sumara +1 por cada nuevo registro en ListaHabitacionesPorReserva
 	Estado nvarchar NOT NULL check (Estado IN('Activa','Cancelada')) CONSTRAINT DF_Reservacion_Estado  DEFAULT ('Activa'),
 )
 GO
