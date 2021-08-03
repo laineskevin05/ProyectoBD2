@@ -1,0 +1,7 @@
+USE master;
+GO
+
+CREATE DATABASE Hotel_OLAP;
+Go
+
+USE Hotel_OLAP;
