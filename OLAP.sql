@@ -29,6 +29,14 @@ CREATE TABLE H_Reserva(
 )
 GO
 
+CREATE TABLE DimProducto(
+	IdProducto int IDENTITY(1,1) PRIMARY KEY NOT NULL,
+
+	Nombre nvarchar(30),
+	Precio_venta money,
+	Categoria nvarchar(20),
+)
+GO
 
 
 
@@ -37,14 +45,6 @@ GO
 
 
 
-
-
-
-Use Hotel_OLTP;
-
-SELECT * FROM [Hotel_OLTP].[dbo].[RH_Empleado] 
-INNER JOIN [Hotel_OLTP].[dbo].[P_Persona] 
-ON [Hotel_OLTP].[dbo].[RH_Empleado].[IdEmpleado] = [Hotel_OLTP].[dbo].[P_Persona] 
 
 
 SELECT Reserva.IdReserva, Reserva.IdPersona, Lista.IdHabitacion, Reserva.Fecha_ingreso, Reserva.Estado FROM [dbo].[V_Reserva] Reserva
