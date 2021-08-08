@@ -69,10 +69,17 @@ GO
 
 Use Hotel_OLTP
 
-SELECT Reserva.IdReserva, Reserva.IdPersona, Lista.IdHabitacion, Reserva.Fecha_ingreso, Reserva.Estado FROM [dbo].[V_Reserva] Reserva
+SELECT Reserva.IdReserva, Reserva.IdPersona, Lista.IdHabitacion, Reserva.Fecha_ingreso, Reserva.Estado 
+FROM [dbo].[V_Reserva] Reserva
 INNER JOIN [dbo].[V_ListaHabitacionesPorReserva] Lista
 ON Reserva.[IdReserva] = Lista.[IdReserva] 
 
-SELECT Empleado.IdEmpleado, Empleado.IdPersona, Info.PrimerNombre, Info.PrimerApellido, Empleado.Estado FROM [dbo].[RH_Empleado] Empleado
+SELECT Empleado.IdEmpleado, Empleado.IdPersona, Info.PrimerNombre, Info.PrimerApellido, Empleado.Estado 
+FROM [dbo].[RH_Empleado] Empleado
 INNER JOIN [dbo].[P_Persona] Info
 ON Empleado.IdPersona = Info.IdPersona
+
+SELECT Mantenimiento.IdMantenimiento, Mantenimiento.IdEmpleado, Mantenimiento.Fecha_Realizacion AS Fecha, Solicitud.TipoSolicitud 
+FROM [dbo].[A_Mantenimiento] Mantenimiento
+INNER JOIN [dbo].[A_Solicitud_Mantenimiento] Solicitud
+ON Mantenimiento.IdSolicitudMantenimiento = Solicitud.IdSolicitudMantenimiento
