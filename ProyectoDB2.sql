@@ -23,7 +23,7 @@ CREATE TABLE RH_Empleado(
 	FechaDeContratacion date NOT NULL,
 	HorasDeVacaciones smallint NOT NULL DEFAULT (0),
 	HorasPorEnfermedad smallint NOT NULL DEFAULT (0),
-	Estado varchar(15) NOT NULL CHECK (Estado IN('Activo', 'En Vacaciones', 'Enfermo', 'Despedido')) CONSTRAINT DF_Empleado_Estado DEFAULT ('ACTIVO'),
+	Estado nvarchar(15) NOT NULL CHECK (Estado IN('Activo', 'En Vacaciones', 'Enfermo', 'Despedido')) CONSTRAINT DF_Empleado_Estado DEFAULT ('ACTIVO'),
 ) 
 GO
 

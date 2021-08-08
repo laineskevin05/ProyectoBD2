@@ -30,7 +30,7 @@ CREATE TABLE H_Reserva(
 GO
 
 CREATE TABLE DimProducto(
-	IdProducto int IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	IdProducto int PRIMARY KEY NOT NULL,
 
 	Nombre nvarchar(30),
 	Precio_venta money,
@@ -38,15 +38,41 @@ CREATE TABLE DimProducto(
 )
 GO
 
+CREATE TABLE H_Consumo(
+	IdConsumo int,
+	IdProducto int REFERENCES DimProducto(IdProducto),
+	Fecha datetime,
+	Cantidad smallint,
+	Precio_total money,
+	PRIMARY KEY (IdConsumo, IdProducto, Fecha)
+)
+GO
+
+CREATE TABLE DimEmpleados(
+	IdEmpleado int PRIMARY KEY,
+	IdPersona int,
+	PrimerNombre nvarchar(20),
+	PrimerApellido nvarchar(20),
+	Estado nvarchar(15),
+)
+GO
+
+CREATE TABLE H_Mantenimiento(
+	IdMantenimiento int,
+	IdEmpleado int REFERENCES DimEmpleados(IdEmpleado),
+	Fecha datetime,
+	TipoSolicitud nvarchar(30),
+	PRIMARY KEY (IdMantenimiento, IdEmpleado, Fecha)
+)
+GO
 
 
-
-
-
-
-
-
+Use Hotel_OLTP
 
 SELECT Reserva.IdReserva, Reserva.IdPersona, Lista.IdHabitacion, Reserva.Fecha_ingreso, Reserva.Estado FROM [dbo].[V_Reserva] Reserva
 INNER JOIN [dbo].[V_ListaHabitacionesPorReserva] Lista
 ON Reserva.[IdReserva] = Lista.[IdReserva] 
+
+SELECT Empleado.IdEmpleado, Empleado.IdPersona, Info.PrimerNombre, Info.PrimerApellido, Empleado.Estado FROM [dbo].[RH_Empleado] Empleado
+INNER JOIN [dbo].[P_Persona] Info
+ON Empleado.IdPersona = Info.IdPersona
