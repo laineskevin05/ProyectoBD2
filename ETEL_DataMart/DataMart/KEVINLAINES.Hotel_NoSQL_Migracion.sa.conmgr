@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="KEVINLAINES.Hotel_NoSQL_Migracion.sa"
+  DTS:DTSID="{0A375B68-25A5-4D79-A540-F4B19C266873}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=KEVINLAINES;User ID=sa;Initial Catalog=Hotel_NoSQL_Migracion;Persist Security Info=True;Application Name=SSIS-DataMart-{0A375B68-25A5-4D79-A540-F4B19C266873}KEVINLAINES.Hotel_NoSQL_Migracion.sa;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA/4DdHK4CmU6mmft2dIKm7QAAAAACAAAAAAAQZgAAAAEAACAAAAC6JVhtYO71SRcR+A5iIdh6jb7gzmQHkmyUWXo5h+kuywAAAAAOgAAAAAIAACAAAADfXmUv7aqOQ9B4pLURNSNyUfbsZrHEHxqbOX29wVn4uIAAAABDkGRBE33wU0p8bs7LlrZwr/6Fpn7aUs8FtxTydDcuHfqI8ZwuKPoWIhQYt6x6NfwrD3/KgeIYfdg+7kiUJkn0t0IsmGhZqomPkNBHZ93jGoWNCImd7EGhQaqVZHTs8hfF1IKqWGKxZ1QYtVL9Dsp9+EeN+vNgCM8HuCp7PsJagUAAAADezPwlU1OwfMIWDNZRwFCpmtBFAObKOViUtoHjiNPIIm04XaW/PEyIiquwC+w5vEerxBX9tSo1+2e5EPElzxrf</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

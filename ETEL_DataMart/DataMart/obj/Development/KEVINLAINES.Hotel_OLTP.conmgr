@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="KEVINLAINES.Hotel_OLTP"
+  DTS:DTSID="{E3029876-43C4-4A00-BB18-95DF0F3986B5}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=KEVINLAINES;Initial Catalog=Hotel_OLTP;Integrated Security=True;Application Name=SSIS-DataMart-{E3029876-43C4-4A00-BB18-95DF0F3986B5}KEVINLAINES.Hotel_OLTP;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
