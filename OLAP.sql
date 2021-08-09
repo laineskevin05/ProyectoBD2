@@ -75,13 +75,14 @@ CREATE TABLE DimInformacionPermanenciaHabitacion (
 )
 
 CREATE TABLE H_ComentariosHotel (
-    "ID" int PRIMARY KEY,
-    "travel_purpose" nvarchar(max),
-    "pros" nvarchar(max),
-    "date" nvarchar(max),
-    "title" nvarchar(max),
-    "average_score" float,
-    "cons" nvarchar(max),
+    ID int PRIMARY KEY,
+	author_fk int REFERENCES DimAutor(ID),
+    travel_purpose nvarchar(max),
+    pros nvarchar(max),
+    "date" datetime,
+    title nvarchar(max),
+    average_score float,
+    cons nvarchar(max),
 )
 
 
@@ -101,3 +102,6 @@ SELECT Mantenimiento.IdMantenimiento, Mantenimiento.IdEmpleado, Mantenimiento.Fe
 FROM [dbo].[A_Mantenimiento] Mantenimiento
 INNER JOIN [dbo].[A_Solicitud_Mantenimiento] Solicitud
 ON Mantenimiento.IdSolicitudMantenimiento = Solicitud.IdSolicitudMantenimiento
+
+ALTER TABLE RH_Empleado ADD FOREIGN KEY (IdPersona) REFERENCES P_Persona(IdPersona);
+GO
