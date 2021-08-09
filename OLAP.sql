@@ -66,6 +66,24 @@ CREATE TABLE H_Mantenimiento(
 )
 GO
 
+CREATE TABLE DimInformacionPermanenciaHabitacion (
+    "ID" int PRIMARY KEY,
+    "checkout" nvarchar(max),
+    "checkin" nvarchar(max),
+    "room_id" int,
+    "room_name" nvarchar(max),
+)
+
+CREATE TABLE H_ComentariosHotel (
+    "ID" int PRIMARY KEY,
+    "travel_purpose" nvarchar(max),
+    "pros" nvarchar(max),
+    "date" nvarchar(max),
+    "title" nvarchar(max),
+    "average_score" float,
+    "cons" nvarchar(max),
+)
+
 
 Use Hotel_OLTP
 
