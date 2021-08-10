@@ -16,7 +16,7 @@ CREATE TABLE RH_Empleado(
 	IdEmpleado int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
 	IdPersona nvarchar(15) NOT NULL, --LLave foranea a P_Persona
-	TituloProfesional nvarchar(50) NOT NULL,
+	TituloProfesional nvarchar(100) NOT NULL,
 	FechaDeCumpleanios date NOT NULL,
 	EstadoCivil nvarchar(20) NOT NULL CHECK (EstadoCivil IN('Soltero(a)', 'Casado(a)', 'Union Libre', 'Divorciado(a)', 'Viudo(a)')),
 	Sexo nchar(1) NOT NULL CHECK (Sexo IN('F', 'H')), --
