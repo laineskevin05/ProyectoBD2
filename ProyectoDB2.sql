@@ -174,7 +174,7 @@ CREATE TABLE V_Reserva(
 	Fecha_ingreso datetime NOT NULL,
 	Fecha_sale datetime NOT NULL,
 	NumeroDeHabitaciones smallint NULL CONSTRAINT DF_Reserva_Numero  DEFAULT (0), --sera llenada por medio de triggers y se sumara +1 por cada nuevo registro en ListaHabitacionesPorReserva
-	Estado nvarchar NOT NULL check (Estado IN('Activa','Cancelada')) CONSTRAINT DF_Reservacion_Estado  DEFAULT ('Activa'),
+	Estado nvarchar(30) NOT NULL check (Estado IN('Activa','Cancelada')) CONSTRAINT DF_Reservacion_Estado  DEFAULT ('Activa'),
 	SubTotal money NULL, -- Es el subtotal de la 1 o mas habitraciones en la reservacion, con los consumos, sin incluir descuentos e impuestos.
 )
 GO
