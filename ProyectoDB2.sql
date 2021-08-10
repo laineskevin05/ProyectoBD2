@@ -17,10 +17,10 @@ CREATE TABLE RH_Empleado(
 
 	IdPersona nvarchar(15) NOT NULL, --LLave foranea a P_Persona
 	TituloProfesional nvarchar(100) NOT NULL,
-	FechaDeCumpleanios date NOT NULL,
+	FechaDeCumpleanios datetime,
 	EstadoCivil nvarchar(20) NOT NULL CHECK (EstadoCivil IN('Soltero(a)', 'Casado(a)', 'Union Libre', 'Divorciado(a)', 'Viudo(a)')),
 	Sexo nchar(1) NOT NULL CHECK (Sexo IN('F', 'H')), --
-	FechaDeContratacion date NOT NULL,
+	FechaDeContratacion datetime NOT NULL,
 	HorasDeVacaciones smallint NOT NULL DEFAULT (0),
 	HorasPorEnfermedad smallint NOT NULL DEFAULT (0),
 	Estado nvarchar(15) NOT NULL CHECK (Estado IN('Activo', 'En Vacaciones', 'Enfermo', 'Despedido')) CONSTRAINT DF_Empleado_Estado DEFAULT ('ACTIVO'),
