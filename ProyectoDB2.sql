@@ -78,11 +78,11 @@ GO
 CREATE TABLE P_Persona(
 	IdPersona nvarchar(15) PRIMARY KEY NOT NULL, -- el id de la persona puede ser el dni o pasaporte
 
-	PrimerNombre nvarchar(20) NOT NULL,
-	SegundoNombre nvarchar(20) NULL,
-	PrimerApellido nvarchar(20) NOT NULL,
-	SegundoApellido nvarchar(20) NULL,
-	Tipo nvarchar(20) NOT NULL check (TIPO IN('Empleado','Cliente Natural','Cliente Juridico')) CONSTRAINT DF_Persona_Tipo DEFAULT ('Cliente Natural'),
+	PrimerNombre nvarchar(30) NOT NULL,
+	SegundoNombre nvarchar(30) NULL,
+	PrimerApellido nvarchar(30) NOT NULL,
+	SegundoApellido nvarchar(30) NULL,
+	Tipo nvarchar(25) NOT NULL check (TIPO IN('Empleado','Cliente Natural','Cliente Juridico')) CONSTRAINT DF_Persona_Tipo DEFAULT ('Cliente Natural'),
 	InformacionAdicional nvarchar(60) NULL,
 )
 GO
@@ -102,11 +102,10 @@ GO
 CREATE TABLE A_Producto(
 	IdProducto int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
-	Nombre nvarchar(30) NOT NULL,
+	Nombre nvarchar(80) NOT NULL,
 	Precio_venta money NOT NULL,
-	Descripcion nvarchar(40) NULL,
-	Categoria nvarchar(20) NULL,
-	Descipcion nvarchar(40) NULL,
+	Categoria nvarchar(30) NULL,
+	Descipcion nvarchar(100) NULL,
 	FechaDeModificacion datetime NOT NULL CONSTRAINT DF_Producto_FechaDeModificacion  DEFAULT (getdate()),
 )
 GO
@@ -117,7 +116,7 @@ CREATE TABLE A_Inventario(
 	IdInventario int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 
 	IdProducto int NOT NULL, --llave foranea a A_Producto
-	Nombre nvarchar(30) NOT NULL,
+	Nombre nvarchar(80) NOT NULL,
 	CantidadExistencia int NOT NULL CHECK (cantidadExistencia >= 0),
 )
 GO
@@ -130,7 +129,7 @@ CREATE TABLE A_OrdenCompra(
 	Cantidad smallint NOT NULL CHECK (Cantidad >= 1),
 	Fecha datetime NOT NULL CONSTRAINT DF_OrdenCompra_Fecha DEFAULT (getdate()),
 	PrecioTotal money NOT NULL,
-	Descipcion nvarchar(40) NULL,
+	Descipcion nvarchar(100) NULL,
 )
 GO
 
@@ -139,7 +138,7 @@ CREATE TABLE A_Solicitud_Mantenimiento(
 
 	IdHabitacion INT NULL, --llave foranea a A_Habitaciones, es null si no se dio en una habitacion
 	Fecha_Solicitud DATETIME NOT NULL, 
-	TipoSolicitud nvarchar(30) NOT NULL,
+	TipoSolicitud nvarchar(60) NOT NULL,
 	Descripcion nvarchar(100) NOT NULL,
 	Estado nvarchar(20) NOT NULL check (Estado IN('Pendiente','Realizado')) CONSTRAINT DF_Solicitud_Estado DEFAULT('Pendiente')
 )
@@ -151,7 +150,7 @@ CREATE TABLE A_Mantenimiento(
 	IdSolicitudMantenimiento int NOT NULL,--llave foranea a A_Solicitud_Mantenimiento
 	IdEmpleado INT NOT NULL, --llave foranea a RH_Empleado,
 	Fecha_Realizacion DATETIME NOT NULL,
-	Descripcion nvarchar(50),
+	Descripcion nvarchar(200),
 )
 
 CREATE TABLE A_Habitaciones(
@@ -160,9 +159,9 @@ CREATE TABLE A_Habitaciones(
 	Numero smallint NOT NULL,
 	Piso smallint NOT NULL,
 	Precio money NULL,
-	Categoria nvarchar(20) NOT NULL check (Categoria IN('Una Cama','Dos Camas','Tres Cama', 'Cuatro Camas')),
-	Estado nvarchar(20) NOT NULL check (Estado IN('Disponible','En Uso','En Mantenimiento')) CONSTRAINT DF_Habitaciones_Estado  DEFAULT ('Disponible'),
-	Descripcion nvarchar(40) NULL,
+	Categoria nvarchar(40) NOT NULL check (Categoria IN('Una Cama','Dos Camas','Tres Cama', 'Cuatro Camas')),
+	Estado nvarchar(40) NOT NULL check (Estado IN('Disponible','En Uso','En Mantenimiento')) CONSTRAINT DF_Habitaciones_Estado  DEFAULT ('Disponible'),
+	Descripcion nvarchar(100) NULL,
 )
 GO
 
