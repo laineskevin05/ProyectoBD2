@@ -295,10 +295,10 @@ def listaNombresDeProductos():
 
 
 
-#llenadoPersonas(1)
-#llenadoEmpleados(1)
+#llenadoPersonas(50)
+#llenadoEmpleados(20)
 #llenadoHabitaciones(30)
 #llenadoProducto_E_Inventario(100)
-#llenadoReservas_y_ListaReservas(5)
-#llenadoConsumo(1)
-llenadoSolicitudes_y_Mantenimientos(40)
+#llenadoReservas_y_ListaReservas(30)
+#llenadoConsumo(10)
+#llenadoSolicitudes_y_Mantenimientos(40)
