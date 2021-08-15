@@ -3,6 +3,7 @@ import string
 import random
 from datetime import datetime
 conexion = db.conexion
+#cursor = conexion.cursor()
 
 def llenadoPersonas(numero):
     try:
@@ -19,7 +20,7 @@ def llenadoPersonas(numero):
         
         print('Se han insertado ')
         print(numero)
-        print(' registos en la tabla empleado')
+        print(' registos en la tabla Persona')
     except Exception as e:
         print("Ocurrió un error al insertar en la tabla persona: ", e)
     finally:
@@ -27,12 +28,11 @@ def llenadoPersonas(numero):
 
 
 def llenadoEmpleados(numero):
-    conexion = db.conexion
     try:
         with conexion.cursor() as cursor:
             consulta1 = "INSERT INTO P_Persona(IdPersona, PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido, Tipo) VALUES (?, ?, ?, ?, ?, ?);"
-            consulta2 = """INSERT INTO RH_Empleado(IdPersona, TituloProfesional, FechaDeCumpleanios, EstadoCivil, Sexo, FechaDeContratacion, HorasDeVacaciones, HorasPorEnfermedad, Estado)
-                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)"""
+            consulta2 = """INSERT INTO RH_Empleado(IdPersona, TituloProfesional, Cargo, FechaDeCumpleanios, EstadoCivil, Sexo, FechaDeContratacion, HorasDeVacaciones, HorasPorEnfermedad, Estado)
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
             for i in range(numero):
                 ## Llenado de persona
                 IdPersona = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(13))
@@ -45,6 +45,7 @@ def llenadoEmpleados(numero):
 
                 ## Llenado de empleado
                 tituloProfesional = random.choice(listaTitulosProfesionales())
+                Cargo = random.choice(['Mantenimiento', 'Ventas', 'Ventas', 'Cocina', 'Cocina','Seguridad','Marketing']) #Para que unos departamentos tengan mas probabilidad
                 fechaDeCumpleanios = FechaCumpleaños()
                 estadoCivil = random.choice(['Soltero(a)', 'Casado(a)', 'Union Libre', 'Divorciado(a)', 'Viudo(a)'])
                 sexo = random.choice(['F','H'])
@@ -52,14 +53,14 @@ def llenadoEmpleados(numero):
                 horasDeVacaciones = random.randint(0, 40)
                 horasPorEnfermedad = random.randint(0, 20)
                 Estado = random.choice(['Activo', 'En Vacaciones', 'Enfermo'])
-                cursor.execute(consulta2, (IdPersona, tituloProfesional, fechaDeCumpleanios, estadoCivil, sexo, fechaDeContratacion, horasDeVacaciones, horasPorEnfermedad, Estado))
+                cursor.execute(consulta2, (IdPersona, tituloProfesional, Cargo, fechaDeCumpleanios, estadoCivil, sexo, fechaDeContratacion, horasDeVacaciones, horasPorEnfermedad, Estado))
 
         print('Se han insertado ')
         print(numero)
         print(' registos en la tabla empleado')
 
     except Exception as e:
-        print("Ocurrió un error al insertar en la tabla persona: ", e)
+        print("Ocurrió un error al insertar en la tabla Empleado: ", e)
     finally:
         conexion.close()
 
@@ -94,7 +95,7 @@ def llenadoHabitaciones(numero):
         print(' registos en la tabla habitaciones')
 
     except Exception as e:
-        print("Ocurrió un error al insertar en la tabla persona: ", e)
+        print("Ocurrió un error al insertar en la tabla Habitaciones: ", e)
     finally:
         conexion.close()
 
@@ -125,10 +126,10 @@ def llenadoProducto_E_Inventario(numero):
 
         print('Se han insertado ')
         print(numero)
-        print(' registos en la tabla empleado')
+        print(' registos en la tabla Producto_E_Inventario')
 
     except Exception as e:
-        print("Ocurrió un error al insertar en la tabla persona: ", e)
+        print("Ocurrió un error al insertar en la tabla Producto_E_Inventario: ", e)
     finally:
         conexion.close()
 
@@ -201,10 +202,10 @@ def llenadoConsumo(numero):
 
         print('Se han insertado ')
         print(numero)
-        print(' registos en la tabla habitaciones')
+        print(' registos en la tabla Consumo')
 
     except Exception as e:
-        print("Ocurrió un error al insertar en la tabla persona: ", e)
+        print("Ocurrió un error al insertar en la tabla Consumo: ", e)
     finally:
         conexion.close()
 
@@ -295,10 +296,10 @@ def listaNombresDeProductos():
 
 
 
-#llenadoPersonas(50)
+llenadoPersonas(25)
 #llenadoEmpleados(20)
 #llenadoHabitaciones(30)
 #llenadoProducto_E_Inventario(100)
-#llenadoReservas_y_ListaReservas(30)
-#llenadoConsumo(10)
+#llenadoReservas_y_ListaReservas(70)
+#llenadoConsumo(40)
 #llenadoSolicitudes_y_Mantenimientos(40)
