@@ -11,8 +11,8 @@
   DTS:LocaleID="3082"
   DTS:ObjectName="DataMart"
   DTS:PackageType="5"
-  DTS:VersionBuild="52"
-  DTS:VersionGUID="{A54234E5-01EA-4338-B5EA-4AB06D548EE9}">
+  DTS:VersionBuild="56"
+  DTS:VersionGUID="{42EAF180-8EB8-4771-96E5-4F4C0CA0AAE5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -16084,12 +16084,6 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
                       cachedLength="15"
                       cachedName="D_Estado"
                       lineageId="Package\InsUpDimEmpleadoMantenimiento\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[D_Estado]" />
-                    <inputColumn
-                      refId="Package\InsUpDimEmpleadoMantenimiento\División condicional.Inputs[Entrada de división condicional].Columns[Cargo]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Cargo"
-                      lineageId="Package\InsUpDimEmpleadoMantenimiento\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[Cargo]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -16109,13 +16103,13 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
                       containsID="true"
                       dataType="System.String"
                       description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
-                      name="Expression">(#{Package\InsUpDimEmpleadoMantenimiento\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[Cargo]} == "Mantenimiento") &amp;&amp; ([ISNULL](#{Package\InsUpDimEmpleadoMantenimiento\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[D_IdEmpleado]}))</property>
+                      name="Expression">[ISNULL](#{Package\InsUpDimEmpleadoMantenimiento\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[D_IdEmpleado]})</property>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
                       expressionType="Notify"
-                      name="FriendlyExpression">(Cargo == "Mantenimiento") &amp;&amp; (ISNULL(D_IdEmpleado))</property>
+                      name="FriendlyExpression">ISNULL(D_IdEmpleado)</property>
                     <property
                       dataType="System.Int32"
                       description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
@@ -16137,13 +16131,13 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
                       containsID="true"
                       dataType="System.String"
                       description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
-                      name="Expression">(#{Package\InsUpDimEmpleadoMantenimiento\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[PrimerNombre]} != #{Package\InsUpDimEmpleadoMantenimiento\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[D_PrimerNombre]}) || (#{Package\InsUpDimEmpleadoMantenimiento\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[PrimerApellido]} != #{Package\InsUpDimEmpleadoMantenimiento\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[D_PrimerApellido]}) || (#{Package\InsUpDimEmpleadoMantenimiento\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[Estado]} != #{Package\InsUpDimEmpleadoMantenimiento\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[D_Estado]})</property>
+                      name="Expression">(#{Package\InsUpDimEmpleadoMantenimiento\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[PrimerNombre]} != #{Package\InsUpDimEmpleadoMantenimiento\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[D_PrimerNombre]}) || (#{Package\InsUpDimEmpleadoMantenimiento\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[PrimerApellido]} != #{Package\InsUpDimEmpleadoMantenimiento\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[D_PrimerApellido]}) || (#{Package\InsUpDimEmpleadoMantenimiento\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[Estado]} != #{Package\InsUpDimEmpleadoMantenimiento\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[D_Estado]}) || ( FALSE )</property>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
                       expressionType="Notify"
-                      name="FriendlyExpression">(PrimerNombre != D_PrimerNombre) || (PrimerApellido != D_PrimerApellido) || (Estado != D_Estado)</property>
+                      name="FriendlyExpression">(PrimerNombre != D_PrimerNombre) || (PrimerApellido != D_PrimerApellido) || (Estado != D_Estado) || ( FALSE )</property>
                     <property
                       dataType="System.Int32"
                       description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
@@ -16182,6 +16176,96 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
                       refId="Package\InsUpDimEmpleadoMantenimiento\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\InsUpDimEmpleadoMantenimiento\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\InsUpDimEmpleadoMantenimiento\División condicional 0"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+              name="División condicional 0"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\InsUpDimEmpleadoMantenimiento\División condicional 0.Inputs[Entrada de división condicional]"
+                  description="Entrada en la transformación División condicional"
+                  name="Entrada de división condicional">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\InsUpDimEmpleadoMantenimiento\División condicional 0.Inputs[Entrada de división condicional].Columns[Cargo]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Cargo"
+                      lineageId="Package\InsUpDimEmpleadoMantenimiento\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[Cargo]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\InsUpDimEmpleadoMantenimiento\División condicional 0.Outputs[EmpleadosDeMantenimiento]"
+                  description="Salida 1 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="EmpleadosDeMantenimiento"
+                  synchronousInputId="Package\InsUpDimEmpleadoMantenimiento\División condicional 0.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">(#{Package\InsUpDimEmpleadoMantenimiento\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[Cargo]} == "Mantenimiento")</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">(Cargo == "Mantenimiento")</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\InsUpDimEmpleadoMantenimiento\División condicional 0.Outputs[Salida predeterminada de división condicional]"
+                  description="Salida predeterminada de la transformación División condicional"
+                  exclusionGroup="1"
+                  name="Salida predeterminada de división condicional"
+                  synchronousInputId="Package\InsUpDimEmpleadoMantenimiento\División condicional 0.Inputs[Entrada de división condicional]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\InsUpDimEmpleadoMantenimiento\División condicional 0.Outputs[Salida de error de división condicional]"
+                  description="Salida de error de la transformación División condicional"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de división condicional"
+                  synchronousInputId="Package\InsUpDimEmpleadoMantenimiento\División condicional 0.Inputs[Entrada de división condicional]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\InsUpDimEmpleadoMantenimiento\División condicional 0.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\InsUpDimEmpleadoMantenimiento\División condicional 0.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\InsUpDimEmpleadoMantenimiento\División condicional 0.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\InsUpDimEmpleadoMantenimiento\División condicional 0.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -16992,6 +17076,11 @@ ON Empleado.IdPersona = Info.IdPersona</property>
           </components>
           <paths>
             <path
+              refId="Package\InsUpDimEmpleadoMantenimiento.Paths[EmpleadosDeMantenimiento]"
+              endId="Package\InsUpDimEmpleadoMantenimiento\División condicional.Inputs[Entrada de división condicional]"
+              name="EmpleadosDeMantenimiento"
+              startId="Package\InsUpDimEmpleadoMantenimiento\División condicional 0.Outputs[EmpleadosDeMantenimiento]" />
+            <path
               refId="Package\InsUpDimEmpleadoMantenimiento.Paths[RegistrosModificados]"
               endId="Package\InsUpDimEmpleadoMantenimiento\Comando de OLE DB.Inputs[Entrada de comando de OLE DB]"
               name="RegistrosModificados"
@@ -17003,7 +17092,7 @@ ON Empleado.IdPersona = Info.IdPersona</property>
               startId="Package\InsUpDimEmpleadoMantenimiento\División condicional.Outputs[RegistrosNuevos]" />
             <path
               refId="Package\InsUpDimEmpleadoMantenimiento.Paths[Salida de combinación de mezcla]"
-              endId="Package\InsUpDimEmpleadoMantenimiento\División condicional.Inputs[Entrada de división condicional]"
+              endId="Package\InsUpDimEmpleadoMantenimiento\División condicional 0.Inputs[Entrada de división condicional]"
               name="Salida de combinación de mezcla"
               startId="Package\InsUpDimEmpleadoMantenimiento\Combinación de mezcla.Outputs[Salida de combinación de mezcla]" />
             <path
@@ -27183,14 +27272,14 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,37.1647069869984"
+              EndConnector="0,37.164706986998"
               Start="0,0"
-              End="0,29.6647069869984">
+              End="0,29.664706986998">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,29.6647069869984" />
+                    End="0,29.664706986998" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -27222,6 +27311,40 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 10]"
+          TopLeft="949.171439361085,274.658824666232">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-109.34285871204,193.376472357813"
+              Start="0,0"
+              End="-109.34285871204,185.876472357813">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,92.6882361789063" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,92.6882361789063"
+                    Point2="0,96.6882361789063"
+                    Point3="-4,96.6882361789063" />
+                  <mssgle:LineSegment
+                    End="-105.34285871204,96.6882361789063" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-105.34285871204,96.6882361789063"
+                    Point2="-109.34285871204,96.6882361789063"
+                    Point3="-109.34285871204,100.688236178906" />
+                  <mssgle:LineSegment
+                    End="-109.34285871204,185.876472357813" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 11]"
           TopLeft="1177.05715423069,189.952942527784">
           <EdgeLayout.Curve>
@@ -27244,19 +27367,31 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restricción 5]"
-          TopLeft="658.828581245092,188.623529465388">
+          Id="Package.PrecedenceConstraints[Restricción 12]"
+          TopLeft="1194.11429415625,114.788235905426">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,43.28235413162"
+              EndConnector="-19.9999948910302,33.5647066223575"
               Start="0,0"
-              End="0,35.78235413162">
+              End="-19.9999948910302,26.0647066223575">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,35.78235413162" />
+                    End="0,12.7823533111788" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.7823533111788"
+                    Point2="0,16.7823533111788"
+                    Point3="-4,16.7823533111788" />
+                  <mssgle:LineSegment
+                    End="-15.9999948910302,16.7823533111788" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-15.9999948910302,16.7823533111788"
+                    Point2="-19.9999948910302,16.7823533111788"
+                    Point3="-19.9999948910302,20.7823533111788" />
+                  <mssgle:LineSegment
+                    End="-19.9999948910302,26.0647066223575" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -27266,19 +27401,65 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restricción 8]"
-          TopLeft="946.885726194478,188.423530741628">
+          Id="Package.PrecedenceConstraints[Restricción 13]"
+          TopLeft="1180.00000919615,275.647061118618">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,44.635293924603"
+              EndConnector="-20.5142866630999,194.058824848551"
               Start="0,0"
-              End="0,37.135293924603">
+              End="-20.5142866630999,186.558824848551">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,37.135293924603" />
+                    End="0,93.0294124242755" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,93.0294124242755"
+                    Point2="0,97.0294124242755"
+                    Point3="-4,97.0294124242755" />
+                  <mssgle:LineSegment
+                    End="-16.5142866630999,97.0294124242755" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-16.5142866630999,97.0294124242755"
+                    Point2="-20.5142866630999,97.0294124242755"
+                    Point3="-20.5142866630999,101.029412424276" />
+                  <mssgle:LineSegment
+                    End="-20.5142866630999,186.558824848551" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 14]"
+          TopLeft="425.800005875315,270.247061300938">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-114.219049991069,201.611765188494"
+              Start="0,0"
+              End="-114.219049991069,194.111765188494">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,115.775265427253" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,115.775265427253"
+                    Point2="0,119.775265427253"
+                    Point3="-4,119.775265427253" />
+                  <mssgle:LineSegment
+                    End="-110.219049991069,119.775265427253" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-110.219049991069,119.775265427253"
+                    Point2="-114.219049991069,119.775265427253"
+                    Point3="-114.219049991069,123.775265427253" />
+                  <mssgle:LineSegment
+                    End="-114.219049991069,194.111765188494" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -27361,9 +27542,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="42.2190489692756,202.376471081572"
+              EndConnector="42.2190489692753,202.376471081572"
               Start="0,0"
-              End="42.2190489692756,194.876471081572">
+              End="42.2190489692753,194.876471081572">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -27374,13 +27555,13 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
                     Point2="0,120.229568534175"
                     Point3="4,120.229568534175" />
                   <mssgle:LineSegment
-                    End="38.2190489692756,120.229568534175" />
+                    End="38.2190489692753,120.229568534175" />
                   <mssgle:CubicBezierSegment
-                    Point1="38.2190489692756,120.229568534175"
-                    Point2="42.2190489692756,120.229568534175"
-                    Point3="42.2190489692756,124.229568534175" />
+                    Point1="38.2190489692753,120.229568534175"
+                    Point2="42.2190489692753,120.229568534175"
+                    Point3="42.2190489692753,124.229568534175" />
                   <mssgle:LineSegment
-                    End="42.2190489692756,194.876471081572" />
+                    End="42.2190489692753,194.876471081572" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -27390,31 +27571,19 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restricción 14]"
-          TopLeft="425.800005875315,270.247061300938">
+          Id="Package.PrecedenceConstraints[Restricción 5]"
+          TopLeft="658.828581245092,188.623529465388">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-114.219049991069,201.611765188494"
+              EndConnector="0,43.28235413162"
               Start="0,0"
-              End="-114.219049991069,194.111765188494">
+              End="0,35.78235413162">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,115.775265427253" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,115.775265427253"
-                    Point2="0,119.775265427253"
-                    Point3="-4,119.775265427253" />
-                  <mssgle:LineSegment
-                    End="-110.219049991069,119.775265427253" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-110.219049991069,119.775265427253"
-                    Point2="-114.219049991069,119.775265427253"
-                    Point3="-114.219049991069,123.775265427253" />
-                  <mssgle:LineSegment
-                    End="-114.219049991069,194.111765188494" />
+                    End="0,35.78235413162" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -27480,6 +27649,28 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 8]"
+          TopLeft="946.885726194478,188.423530741628">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.635293924603"
+              Start="0,0"
+              End="0,37.135293924603">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.135293924603" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 9]"
           TopLeft="943.600012516975,114.023529283068">
           <EdgeLayout.Curve>
@@ -27493,108 +27684,6 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,25.3000014585603" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restricción 10]"
-          TopLeft="949.171439361085,274.658824666232">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-109.34285871204,193.376472357813"
-              Start="0,0"
-              End="-109.34285871204,185.876472357813">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,92.6882361789063" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,92.6882361789063"
-                    Point2="0,96.6882361789063"
-                    Point3="-4,96.6882361789063" />
-                  <mssgle:LineSegment
-                    End="-105.34285871204,96.6882361789063" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-105.34285871204,96.6882361789063"
-                    Point2="-109.34285871204,96.6882361789063"
-                    Point3="-109.34285871204,100.688236178906" />
-                  <mssgle:LineSegment
-                    End="-109.34285871204,185.876472357813" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restricción 12]"
-          TopLeft="1194.11429415625,114.788235905426">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-19.9999948910283,33.5647066223577"
-              Start="0,0"
-              End="-19.9999948910283,26.0647066223577">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,12.7823533111788" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,12.7823533111788"
-                    Point2="0,16.7823533111788"
-                    Point3="-4,16.7823533111788" />
-                  <mssgle:LineSegment
-                    End="-15.9999948910283,16.7823533111788" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-15.9999948910283,16.7823533111788"
-                    Point2="-19.9999948910283,16.7823533111788"
-                    Point3="-19.9999948910283,20.7823533111788" />
-                  <mssgle:LineSegment
-                    End="-19.9999948910283,26.0647066223577" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restricción 13]"
-          TopLeft="1180.00000919615,275.647061118618">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-20.5142866630999,194.058824848551"
-              Start="0,0"
-              End="-20.5142866630999,186.558824848551">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,93.0294124242755" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,93.0294124242755"
-                    Point2="0,97.0294124242755"
-                    Point3="-4,97.0294124242755" />
-                  <mssgle:LineSegment
-                    End="-16.5142866630999,97.0294124242755" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-16.5142866630999,97.0294124242755"
-                    Point2="-20.5142866630999,97.0294124242755"
-                    Point3="-20.5142866630999,101.029412424276" />
-                  <mssgle:LineSegment
-                    End="-20.5142866630999,186.558824848551" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -27890,7 +27979,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -27912,7 +28003,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -27946,7 +28039,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -27980,7 +28075,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28002,7 +28099,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28054,33 +28153,33 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="177.6,41.6"
-          Id="Package\DelDimEmpleadoMantenimiento\Origen de ADO OLTP"
-          TopLeft="532,45" />
-        <NodeLayout
           Size="188.8,41.6"
           Id="Package\DelDimEmpleadoMantenimiento\Combinación de mezcla"
           TopLeft="380,195" />
         <NodeLayout
-          Size="116.8,41.6"
-          Id="Package\DelDimEmpleadoMantenimiento\Ordenar"
-          TopLeft="263,114" />
-        <NodeLayout
-          Size="170.4,41.6"
-          Id="Package\DelDimEmpleadoMantenimiento\División condicional"
-          TopLeft="387,268" />
+          Size="177.6,41.6"
+          Id="Package\DelDimEmpleadoMantenimiento\Origen de ADO OLAP"
+          TopLeft="238,42" />
         <NodeLayout
           Size="125.6,41.6"
           Id="Package\DelDimEmpleadoMantenimiento\Ordenar 1"
           TopLeft="554,115" />
         <NodeLayout
           Size="177.6,41.6"
-          Id="Package\DelDimEmpleadoMantenimiento\Origen de ADO OLAP"
-          TopLeft="238,42" />
+          Id="Package\DelDimEmpleadoMantenimiento\Origen de ADO OLTP"
+          TopLeft="532,45" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\DelDimEmpleadoMantenimiento\División condicional"
+          TopLeft="387,268" />
         <NodeLayout
           Size="176.8,41.6"
           Id="Package\DelDimEmpleadoMantenimiento\Comando de OLE DB"
           TopLeft="384,368" />
+        <NodeLayout
+          Size="116.8,41.6"
+          Id="Package\DelDimEmpleadoMantenimiento\Ordenar"
+          TopLeft="263,114" />
         <EdgeLayout
           Id="Package\DelDimEmpleadoMantenimiento.Paths[Salida de origen de ADO NET1]"
           TopLeft="618.8,86.6">
@@ -28243,7 +28342,7 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DelDimEmpleadoMantenimiento\Origen de ADO OLTP">
+    design-time-name="Package\DelDimEmpleadoMantenimiento\Origen de ADO OLAP">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -28251,7 +28350,7 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DelDimEmpleadoMantenimiento\Origen de ADO OLAP">
+    design-time-name="Package\DelDimEmpleadoMantenimiento\Origen de ADO OLTP">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -28310,7 +28409,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28332,7 +28433,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28366,7 +28469,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28400,7 +28505,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28434,7 +28541,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28532,7 +28641,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28566,7 +28677,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28600,7 +28713,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28634,7 +28749,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -28668,7 +28785,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -29428,7 +29547,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -29450,7 +29571,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -29496,7 +29619,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -29530,7 +29655,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -29564,7 +29691,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -30140,111 +30269,39 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
     design-time-name="Package\InsUpDimEmpleadoMantenimiento">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="125.6,41.6"
-          Id="Package\InsUpDimEmpleadoMantenimiento\Ordenar 1"
-          TopLeft="604,120" />
-        <NodeLayout
-          Size="170.4,41.6"
-          Id="Package\InsUpDimEmpleadoMantenimiento\División condicional"
-          TopLeft="442,280" />
-        <NodeLayout
-          Size="177.6,41.6"
-          Id="Package\InsUpDimEmpleadoMantenimiento\Origen de ADO OLAP"
-          TopLeft="585,47" />
-        <NodeLayout
-          Size="176,41.6"
-          Id="Package\InsUpDimEmpleadoMantenimiento\Destino de ADO NET"
-          TopLeft="321,383" />
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="188.8,41.6"
           Id="Package\InsUpDimEmpleadoMantenimiento\Combinación de mezcla"
           TopLeft="433,201" />
         <NodeLayout
+          Size="176,41.6"
+          Id="Package\InsUpDimEmpleadoMantenimiento\Destino de ADO NET"
+          TopLeft="320,478" />
+        <NodeLayout
           Size="177.6,41.6"
           Id="Package\InsUpDimEmpleadoMantenimiento\Origen de ADO OLTP"
           TopLeft="305,44" />
+        <NodeLayout
+          Size="125.6,41.6"
+          Id="Package\InsUpDimEmpleadoMantenimiento\Ordenar 1"
+          TopLeft="604,120" />
         <NodeLayout
           Size="116.8,41.6"
           Id="Package\InsUpDimEmpleadoMantenimiento\Ordenar"
           TopLeft="329,118" />
         <NodeLayout
+          Size="177.6,41.6"
+          Id="Package\InsUpDimEmpleadoMantenimiento\Origen de ADO OLAP"
+          TopLeft="585,47" />
+        <NodeLayout
           Size="176.8,41.6"
           Id="Package\InsUpDimEmpleadoMantenimiento\Comando de OLE DB"
-          TopLeft="585,389" />
-        <EdgeLayout
-          Id="Package\InsUpDimEmpleadoMantenimiento.Paths[RegistrosNuevos]"
-          TopLeft="527.2,321.6">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-118.2,61.4"
-              Start="0,0"
-              End="-118.2,53.9">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,26.7" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26.7"
-                    Point2="0,30.7"
-                    Point3="-4,30.7" />
-                  <mssgle:LineSegment
-                    End="-114.2,30.7" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-114.2,30.7"
-                    Point2="-118.2,30.7"
-                    Point3="-118.2,34.7" />
-                  <mssgle:LineSegment
-                    End="-118.2,53.9" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-96.117578125,35.7,74.03515625,11.384765625"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\InsUpDimEmpleadoMantenimiento.Paths[RegistrosModificados]"
-          TopLeft="554.266666666667,321.6">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="119.133333333333,67.4"
-              Start="0,0"
-              End="119.133333333333,59.9">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,23.3361860465116" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,23.3361860465116"
-                    Point2="0,27.3361860465116"
-                    Point3="4,27.3361860465116" />
-                  <mssgle:LineSegment
-                    End="115.133333333333,27.3361860465116" />
-                  <mssgle:CubicBezierSegment
-                    Point1="115.133333333333,27.3361860465116"
-                    Point2="119.133333333333,27.3361860465116"
-                    Point3="119.133333333333,31.3361860465116" />
-                  <mssgle:LineSegment
-                    End="119.133333333333,59.9" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="12.8840885416665,32.3361860465116,93.36515625,11.7119140625"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          TopLeft="584,484" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\InsUpDimEmpleadoMantenimiento\División condicional"
+          TopLeft="441,375" />
         <EdgeLayout
           Id="Package\InsUpDimEmpleadoMantenimiento.Paths[Salida de origen de ADO NET1]"
           TopLeft="670.3,88.6">
@@ -30358,19 +30415,95 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\InsUpDimEmpleadoMantenimiento.Paths[Salida de combinación de mezcla]"
-          TopLeft="527.3,242.6">
+          Id="Package\InsUpDimEmpleadoMantenimiento.Paths[RegistrosNuevos]"
+          TopLeft="526.2,416.6">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,37.4"
+              EndConnector="-118.2,61.4"
               Start="0,0"
-              End="0,29.9">
+              End="-118.2,53.9">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,29.9" />
+                    End="0,26.7" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.7"
+                    Point2="0,30.7"
+                    Point3="-4,30.7" />
+                  <mssgle:LineSegment
+                    End="-114.2,30.7" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-114.2,30.7"
+                    Point2="-118.2,30.7"
+                    Point3="-118.2,34.7" />
+                  <mssgle:LineSegment
+                    End="-118.2,53.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-96.117578125,35.7,74.03515625,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\InsUpDimEmpleadoMantenimiento.Paths[RegistrosModificados]"
+          TopLeft="553.266666666667,416.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="119.133333333333,67.4"
+              Start="0,0"
+              End="119.133333333333,59.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.3361860465116" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.3361860465116"
+                    Point2="0,27.3361860465116"
+                    Point3="4,27.3361860465116" />
+                  <mssgle:LineSegment
+                    End="115.133333333333,27.3361860465116" />
+                  <mssgle:CubicBezierSegment
+                    Point1="115.133333333333,27.3361860465116"
+                    Point2="119.133333333333,27.3361860465116"
+                    Point3="119.133333333333,31.3361860465116" />
+                  <mssgle:LineSegment
+                    End="119.133333333333,59.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="12.8840885416665,32.3361860465116,93.36515625,11.7119140625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="179.2,41.6"
+          Id="Package\InsUpDimEmpleadoMantenimiento\División condicional 0"
+          TopLeft="436,274.4" />
+        <EdgeLayout
+          Id="Package\InsUpDimEmpleadoMantenimiento.Paths[Salida de combinación de mezcla]"
+          TopLeft="526.5,242.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.7999999999998"
+              Start="0,0"
+              End="0,24.2999999999998">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.2999999999998" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -30379,17 +30512,33 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\InsUpDimEmpleadoMantenimiento.Paths[EmpleadosDeMantenimiento]"
+          TopLeft="525.9,316">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.0000000000001"
+              Start="0,0"
+              End="0,51.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-63.04703125,19.9453125,126.0940625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\InsUpDimEmpleadoMantenimiento\Origen de ADO OLAP">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\InsUpDimEmpleadoMantenimiento\Destino de ADO NET">
     <Properties>
@@ -30400,6 +30549,14 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\InsUpDimEmpleadoMantenimiento\Origen de ADO OLTP">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\InsUpDimEmpleadoMantenimiento\Origen de ADO OLAP">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -30768,7 +30925,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -30790,7 +30949,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -30824,7 +30985,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -30858,7 +31021,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -30880,7 +31045,9 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -31177,7 +31344,7 @@ ON Reserva.[IdReserva] = Lista.[IdReserva]</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="37.8840885416666,25.3601860465116,93.36515625,11.7119140625"
+              BoundingBox="37.8840885416665,25.3601860465116,93.36515625,11.7119140625"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
