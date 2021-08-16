@@ -1,0 +1,29 @@
+<AnalysisServicesUserConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0">
+  <Configurations>
+    <Configuration>
+      <Name>Development</Name>
+      <Options>
+        <UserIDs>
+          <ConfigurationSetting>
+            <Id>Hotel_OLAP</Id>
+            <Name>Hotel_OLAP</Name>
+            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA/4DdHK4CmU6mmft2dIKm7QAAAAAWAAAASABvAHQAZQBsAF8ATwBMAEEAUAAAABBmAAAAAQAAIAAAANG+ie1tvqlNMQVoVGgvM/mS7cQ4l/WHQxMOQzMMGyeJAAAAAA6AAAAAAgAAIAAAAHTX9/vLNOJ8eRr04LwoW7P1KLYyYnJfBJO3CpVBRfu6EAAAAFyilj4ALIjOSoA7dRw9sVdAAAAA5IcesIeo609fNuLZV/31HyIYDn2u7t5IqTtqSszqcgow5hN8WLJBWxR/fm8AA0mRHhQD8+mrrtEM8qUdDngUIg==</Value>
+          </ConfigurationSetting>
+        </UserIDs>
+        <UserPasswords>
+          <ConfigurationSetting>
+            <Id>Hotel_OLAP</Id>
+            <Name>Hotel_OLAP</Name>
+            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA/4DdHK4CmU6mmft2dIKm7QAAAAAWAAAASABvAHQAZQBsAF8ATwBMAEEAUAAAABBmAAAAAQAAIAAAAPMq/cwoeWj7gHwraP1VEF10Ic4QxIeKxQV5KHcuq7OGAAAAAA6AAAAAAgAAIAAAAFPzIF6y9dWVGP2B/JSWQgko/2n74wFkZPoTxws9EzIdIAAAAERa5oHYMwxIN23A7JHSevAa+nxbPqxGKMkUUwGI1kGIQAAAANRqBH3YG2Du4eFM9HU5ji4hm1OBvt4CE1SdRTjeezCsZHGfwraKIqDLv4sxJkLTufAC+2c9DZTp3tDo7L9GIXg=</Value>
+          </ConfigurationSetting>
+        </UserPasswords>
+        <TargetServer>localhost</TargetServer>
+        <TargetDatabase>AS_Datamart</TargetDatabase>
+        <StartObject>
+          <ObjectId></ObjectId>
+          <ObjectType>Current</ObjectType>
+        </StartObject>
+      </Options>
+    </Configuration>
+  </Configurations>
+</AnalysisServicesUserConfiguration>

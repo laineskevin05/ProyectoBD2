@@ -1,0 +1,90 @@
+﻿<DataSourceView xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="7b43f5c7-9545-46cf-9dea-4e8f3699b600" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Comentarios</ID>
+  <Name>Comentarios</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:CurrentLayout</Name>
+      <Value>_ALL_TABLES_</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:SchemaRestriction</Name>
+      <Value></Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:RetrieveRelationships</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:Layouts</Name>
+      <Value>
+        <Layouts xmlns="">
+          <Diagram>
+            <Name>_ALL_TABLES_</Name>
+            <DiagramLayout />
+            <ShowRelationshipNames>False</ShowRelationshipNames>
+            <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
+            <DiagramViewPortLeft>0</DiagramViewPortLeft>
+            <DiagramViewPortTop>0</DiagramViewPortTop>
+            <DiagramBoundingLeft>0</DiagramBoundingLeft>
+            <DiagramBoundingTop>0</DiagramBoundingTop>
+            <DiagramZoom>100</DiagramZoom>
+          </Diagram>
+        </Layouts>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <DataSourceID>Hotel_OLAP</DataSourceID>
+  <Schema>
+    <xs:schema id="Comentarios" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+      <xs:element name="Comentarios" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="d8beca98-b064-424e-b2d0-f539ff285a39">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="dbo_H_ComentariosHotel" msprop:design-time-name="d4b23881-9e64-4353-b4af-352b635f4ef3" msprop:DbTableName="H_ComentariosHotel" msprop:FriendlyName="H_ComentariosHotel" msprop:DbSchemaName="dbo" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ID" msprop:design-time-name="c837fd4c-9a3b-41b3-9fad-b10ee95baf58" msprop:DbColumnName="ID" msprop:FriendlyName="ID" type="xs:int" />
+                  <xs:element name="author_fk" msprop:design-time-name="6c61ec92-a431-4d70-92cb-0797bdeb81e8" msprop:DbColumnName="author_fk" msprop:FriendlyName="author_fk" type="xs:int" minOccurs="0" />
+                  <xs:element name="travel_purpose" msprop:design-time-name="d3db2e6e-dda3-48b1-a296-dd96e0b2794d" msprop:DbColumnName="travel_purpose" msprop:FriendlyName="travel_purpose" type="xs:string" minOccurs="0" />
+                  <xs:element name="pros" msprop:design-time-name="6cd8a15a-7756-441b-8e19-61bf4f36c02b" msprop:DbColumnName="pros" msprop:FriendlyName="pros" type="xs:string" minOccurs="0" />
+                  <xs:element name="date" msprop:design-time-name="9d936c58-dd95-4dbf-ad62-953be30ff43c" msprop:DbColumnName="date" msprop:FriendlyName="date" type="xs:dateTime" minOccurs="0" />
+                  <xs:element name="title" msprop:design-time-name="ddfe95f1-b911-49d9-b515-0a6d6412087a" msprop:DbColumnName="title" msprop:FriendlyName="title" type="xs:string" minOccurs="0" />
+                  <xs:element name="average_score" msprop:design-time-name="23a7c769-ad3f-492b-9e3b-28351c021da5" msprop:DbColumnName="average_score" msprop:FriendlyName="average_score" type="xs:double" minOccurs="0" />
+                  <xs:element name="cons" msprop:design-time-name="80573cb9-d726-474c-93ea-6bffdd54b371" msprop:DbColumnName="cons" msprop:FriendlyName="cons" type="xs:string" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_DimAutor" msprop:design-time-name="3fc281fe-225a-43bf-8296-c16afe445294" msprop:DbTableName="DimAutor" msprop:FriendlyName="DimAutor" msprop:DbSchemaName="dbo" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ID" msprop:design-time-name="ff792205-0821-48ae-89e3-12e459b5a6c3" msprop:DbColumnName="ID" msprop:FriendlyName="ID" type="xs:int" />
+                  <xs:element name="name" msprop:design-time-name="8240149e-adcd-483b-ada0-8c993dd5ee1d" msprop:DbColumnName="name" msprop:FriendlyName="name" type="xs:string" minOccurs="0" />
+                  <xs:element name="user_id" msprop:design-time-name="79b156c3-f1c2-4416-8c1b-5cc8a660eda3" msprop:DbColumnName="user_id" msprop:FriendlyName="user_id" type="xs:int" minOccurs="0" />
+                  <xs:element name="type_string" msprop:design-time-name="0c51acfd-8ebc-47d2-b565-73d784a94373" msprop:DbColumnName="type_string" msprop:FriendlyName="type_string" type="xs:string" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+        <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_H_ComentariosHotel" />
+          <xs:field xpath="ID" />
+        </xs:unique>
+        <xs:unique name="dbo_DimAutor_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_DimAutor" />
+          <xs:field xpath="ID" />
+        </xs:unique>
+        <xs:keyref name="FK__H_Comenta__autho__70DDC3D8" refer="dbo_DimAutor_Constraint1">
+          <xs:selector xpath=".//dbo_H_ComentariosHotel" />
+          <xs:field xpath="author_fk" />
+        </xs:keyref>
+      </xs:element>
+    </xs:schema>
+    <Comentarios xmlns="" />
+  </Schema>
+</DataSourceView>

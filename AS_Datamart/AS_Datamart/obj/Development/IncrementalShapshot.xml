@@ -1,0 +1,152 @@
+﻿<DeploymentSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0">
+  <Target>
+    <Database>AS_Datamart</Database>
+    <Server>localhost</Server>
+    <ConnectionString>Data Source=localhost;Timeout=0</ConnectionString>
+  </Target>
+  <Options>
+    <TransactionalDeployment>false</TransactionalDeployment>
+    <PartitionDeployment>DeployPartitions</PartitionDeployment>
+    <RoleDeployment>DeployRolesRetainMembers</RoleDeployment>
+    <ProcessingOption>DoNotProcess</ProcessingOption>
+    <OutputScript></OutputScript>
+    <ImpactAnalysisFile></ImpactAnalysisFile>
+    <ConfigurationSettingsDeployment>Deploy</ConfigurationSettingsDeployment>
+    <OptimizationSettingsDeployment>Deploy</OptimizationSettingsDeployment>
+    <WriteBackTableCreation>UseExisting</WriteBackTableCreation>
+  </Options>
+  <Snapshot>
+    <ObjectSnapshots>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
+        <TimeStamp>TDYGJm6Rv2eTFJalBY+QDgzYwWk=07/08/2021 21:24:3007/08/2021 20:49:13</TimeStamp>
+        <ID>
+          <String>Hotel_OLAP</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>Z/UvYvF8jGbWwvK68pBZ9BgBbrw=10/08/2021 21:43:5310/08/2021 21:43:53</TimeStamp>
+        <ID>
+          <String>Comentarios</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>bP1BwOmUZ1tDCHsieEWY+7p90io=10/08/2021 21:54:1310/08/2021 21:45:03</TimeStamp>
+        <ID>
+          <String>Consumo</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>p5kejI2mXPYy1YuyuCpy4liyEzg=10/08/2021 21:54:5910/08/2021 21:45:44</TimeStamp>
+        <ID>
+          <String>Mantenimiento</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>RBoouLGP3JHT8dT9MT0CvrsJWfw=10/08/2021 21:55:2410/08/2021 21:46:19</TimeStamp>
+        <ID>
+          <String>Reservaciones</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>1Wk9rvC9Acr1Lyhj3WazWrLMSwA=15/08/2021 21:49:5310/08/2021 21:46:49</TimeStamp>
+        <ID>
+          <String>Dim Autor</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>kHfnfjOZYZ0jo/PkPoUGkEIeRJ4=10/08/2021 22:03:3310/08/2021 21:58:16</TimeStamp>
+        <ID>
+          <String>Dim Clientes</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>LQUi0QF3qGx/G4V9uQv0ZCY31Ug=10/08/2021 22:02:0310/08/2021 21:58:16</TimeStamp>
+        <ID>
+          <String>Dim Habitaciones</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>cAIvwkIzJR/ENTBLqnfNfLjjrmQ=10/08/2021 22:07:0810/08/2021 21:58:16</TimeStamp>
+        <ID>
+          <String>Dim Tiempo</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>4fhdyI1CYseH5g3/Pvfv6fUTIVI=15/08/2021 21:51:1711/08/2021 16:00:14</TimeStamp>
+        <ID>
+          <String>Dim Empleados</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>0sYCFZtmD9L+4udT88fdu50ZHNc=11/08/2021 16:03:2511/08/2021 16:00:14</TimeStamp>
+        <ID>
+          <String>Dim Tiempo 1</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>fOQlDQdRgwW/ZboHI2Yf+ne5ZJk=15/08/2021 21:51:4815/08/2021 21:27:08</TimeStamp>
+        <ID>
+          <String>Dim Producto</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>F0GQ5Ks8K+jVsC4c6LJeKJ8dals=15/08/2021 21:52:4815/08/2021 21:27:08</TimeStamp>
+        <ID>
+          <String>Dim Tiempo 2</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>j6/tr/Bd8DYEencs57TOBtAh8k8=15/08/2021 21:49:5310/08/2021 21:46:496cejn3AJQ7kvqcwNuBjbJCHHtY4=10/08/2021 21:46:4910/08/2021 21:46:49</TimeStamp>
+        <ID>
+          <String>Comentarios</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>LDzKdoHVGuqE9EWAWel6UUVgtxE=15/08/2021 21:33:1610/08/2021 21:58:16tbrAwNjocKDIsO3cIHOjLwAFG+o=10/08/2021 21:58:1610/08/2021 21:58:16</TimeStamp>
+        <ID>
+          <String>Reservaciones</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>KlgxbmaRPqFASIGSFrM8IsIb+PI=15/08/2021 21:51:1711/08/2021 16:00:14KYBn15ESOxQ3tjFBSFFXmu1DUCI=11/08/2021 16:00:1411/08/2021 16:00:14</TimeStamp>
+        <ID>
+          <String>Mantenimiento</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>jPa95U69Z1bWJq6hENaWMPzIpiQ=15/08/2021 21:52:4715/08/2021 21:27:07BBRT+muCAYGY31TMbGs1v82+wsM=15/08/2021 21:27:0815/08/2021 21:27:08</TimeStamp>
+        <ID>
+          <String>Consumo</String>
+        </ID>
+      </ObjectSnapshot>
+    </ObjectSnapshots>
+    <DatabaseSnapshot>
+      <Type>Microsoft.AnalysisServices.Database</Type>
+      <TimeStamp>TZWa/iohpOueFZX5rqNpPhYA3X8=07/08/2021 20:48:0507/08/2021 20:48:05</TimeStamp>
+      <ID>
+        <String>AS_Datamart</String>
+      </ID>
+    </DatabaseSnapshot>
+    <Granularity>Coarse</Granularity>
+  </Snapshot>
+  <AssemblyLocations />
+  <ProcessingComplete>true</ProcessingComplete>
+  <LastDeployed>2021-08-16T03:52:48.563333Z</LastDeployed>
+</DeploymentSnapshot>
