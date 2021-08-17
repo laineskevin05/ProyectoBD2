@@ -8,37 +8,35 @@
             <ChartMember>
               <Group Name="Chart1_CategoryGroup">
                 <GroupExpressions>
-                  <GroupExpression>=Fields!Mes_Nombre.Value</GroupExpression>
+                  <GroupExpression>=Fields!Primer_Nombre.Value</GroupExpression>
                 </GroupExpressions>
               </Group>
               <SortExpressions>
                 <SortExpression>
-                  <Value>=Fields!Mes_Nombre.Value</Value>
+                  <Value>=Fields!Primer_Nombre.Value</Value>
                 </SortExpression>
               </SortExpressions>
-              <Label>=Fields!Mes_Nombre.Value</Label>
+              <Label>=Fields!Primer_Nombre.Value</Label>
             </ChartMember>
           </ChartMembers>
         </ChartCategoryHierarchy>
         <ChartSeriesHierarchy>
           <ChartMembers>
             <ChartMember>
-              <Label>Cantidad</Label>
+              <Label>Recuento H Mantenimiento</Label>
             </ChartMember>
           </ChartMembers>
         </ChartSeriesHierarchy>
         <ChartData>
           <ChartSeriesCollection>
-            <ChartSeries Name="Cantidad">
+            <ChartSeries Name="Recuento_H_Mantenimiento">
               <ChartDataPoints>
                 <ChartDataPoint>
                   <ChartDataPointValues>
-                    <Y>=Sum(Fields!Cantidad.Value)</Y>
+                    <Y>=Sum(Fields!Recuento_H_Mantenimiento.Value)</Y>
                   </ChartDataPointValues>
                   <ChartDataLabel>
-                    <Style>
-                      <FontSize>12pt</FontSize>
-                    </Style>
+                    <Style />
                     <UseValueAsLabel>true</UseValueAsLabel>
                     <Visible>true</Visible>
                   </ChartDataLabel>
@@ -49,8 +47,6 @@
                   <DataElementOutput>Output</DataElementOutput>
                 </ChartDataPoint>
               </ChartDataPoints>
-              <Type>Shape</Type>
-              <Subtype>ExplodedDoughnut</Subtype>
               <Style />
               <ChartEmptyPoints>
                 <Style />
@@ -78,7 +74,7 @@
                   <FontSize>8pt</FontSize>
                 </Style>
                 <ChartAxisTitle>
-                  <Caption>Axis Title</Caption>
+                  <Caption>Empleados</Caption>
                   <Style>
                     <FontSize>8pt</FontSize>
                   </Style>
@@ -153,7 +149,7 @@
                   <FontSize>8pt</FontSize>
                 </Style>
                 <ChartAxisTitle>
-                  <Caption>Axis Title</Caption>
+                  <Caption>Mantenimiento</Caption>
                   <Style>
                     <FontSize>8pt</FontSize>
                   </Style>
@@ -245,7 +241,7 @@
         </ChartLegends>
         <ChartTitles>
           <ChartTitle Name="Default">
-            <Caption>Consumo por mes</Caption>
+            <Caption>Mantenimiento Por Primer Nombre Empleado</Caption>
             <Style>
               <BackgroundGradientType>None</BackgroundGradientType>
               <FontWeight>Bold</FontWeight>
@@ -254,10 +250,11 @@
             </Style>
           </ChartTitle>
         </ChartTitles>
-        <Palette>BrightPastel</Palette>
+        <Palette>Excel</Palette>
         <ChartBorderSkin>
+          <ChartBorderSkinType>FrameThin1</ChartBorderSkinType>
           <Style>
-            <BackgroundColor>Gray</BackgroundColor>
+            <BackgroundColor>PaleTurquoise</BackgroundColor>
             <BackgroundGradientType>None</BackgroundGradientType>
             <Color>White</Color>
           </Style>
@@ -271,8 +268,8 @@
           </Style>
         </ChartNoDataMessage>
         <DataSetName>DataSet1</DataSetName>
-        <Height>9.4009cm</Height>
-        <Width>14.13439cm</Width>
+        <Height>10.07683cm</Height>
+        <Width>14.44907cm</Width>
         <Style>
           <Border>
             <Color>LightGrey</Color>
@@ -288,32 +285,32 @@
             <ChartMember>
               <Group Name="Chart2_CategoryGroup">
                 <GroupExpressions>
-                  <GroupExpression>=Fields!Precio_Venta.Value</GroupExpression>
+                  <GroupExpression>=Fields!Mes_Nombre.Value</GroupExpression>
                 </GroupExpressions>
               </Group>
               <SortExpressions>
                 <SortExpression>
-                  <Value>=Fields!Precio_Venta.Value</Value>
+                  <Value>=Fields!Mes_Nombre.Value</Value>
                 </SortExpression>
               </SortExpressions>
-              <Label>=Fields!Precio_Venta.Value</Label>
+              <Label>=Fields!Mes_Nombre.Value</Label>
             </ChartMember>
           </ChartMembers>
         </ChartCategoryHierarchy>
         <ChartSeriesHierarchy>
           <ChartMembers>
             <ChartMember>
-              <Label>Cantidad</Label>
+              <Label>Recuento H Mantenimiento</Label>
             </ChartMember>
           </ChartMembers>
         </ChartSeriesHierarchy>
         <ChartData>
           <ChartSeriesCollection>
-            <ChartSeries Name="Cantidad">
+            <ChartSeries Name="Recuento_H_Mantenimiento">
               <ChartDataPoints>
                 <ChartDataPoint>
                   <ChartDataPointValues>
-                    <Y>=Sum(Fields!Cantidad.Value)</Y>
+                    <Y>=Sum(Fields!Recuento_H_Mantenimiento.Value)</Y>
                   </ChartDataPointValues>
                   <ChartDataLabel>
                     <Style />
@@ -354,12 +351,11 @@
                   <FontSize>8pt</FontSize>
                 </Style>
                 <ChartAxisTitle>
-                  <Caption>Precio</Caption>
+                  <Caption>Mes</Caption>
                   <Style>
                     <FontSize>8pt</FontSize>
                   </Style>
                 </ChartAxisTitle>
-                <Interval>1</Interval>
                 <ChartMajorGridLines>
                   <Enabled>False</Enabled>
                   <Style>
@@ -430,7 +426,7 @@
                   <FontSize>8pt</FontSize>
                 </Style>
                 <ChartAxisTitle>
-                  <Caption>Consumo</Caption>
+                  <Caption>Mantenimiento</Caption>
                   <Style>
                     <FontSize>8pt</FontSize>
                   </Style>
@@ -504,7 +500,7 @@
         </ChartAreas>
         <ChartTitles>
           <ChartTitle Name="Default">
-            <Caption>Cconsumo por precio de venta</Caption>
+            <Caption>Mantenimiento Por Nombre Del Mes</Caption>
             <Style>
               <BackgroundGradientType>None</BackgroundGradientType>
               <FontWeight>Bold</FontWeight>
@@ -513,8 +509,9 @@
             </Style>
           </ChartTitle>
         </ChartTitles>
-        <Palette>SeaGreen</Palette>
+        <Palette>Chocolate</Palette>
         <ChartBorderSkin>
+          <ChartBorderSkinType>FrameThin1</ChartBorderSkinType>
           <Style>
             <BackgroundColor>Gray</BackgroundColor>
             <BackgroundGradientType>None</BackgroundGradientType>
@@ -530,10 +527,9 @@
           </Style>
         </ChartNoDataMessage>
         <DataSetName>DataSet1</DataSetName>
-        <Top>0.07056cm</Top>
-        <Left>14.31078cm</Left>
-        <Height>9.33035cm</Height>
-        <Width>17.52771cm</Width>
+        <Top>10.59656cm</Top>
+        <Height>9.8387cm</Height>
+        <Width>14.44907cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -550,32 +546,32 @@
             <ChartMember>
               <Group Name="Chart3_CategoryGroup">
                 <GroupExpressions>
-                  <GroupExpression>=Fields!Nombre.Value</GroupExpression>
+                  <GroupExpression>=Fields!Trimestre.Value</GroupExpression>
                 </GroupExpressions>
               </Group>
               <SortExpressions>
                 <SortExpression>
-                  <Value>=Fields!Nombre.Value</Value>
+                  <Value>=Fields!Trimestre.Value</Value>
                 </SortExpression>
               </SortExpressions>
-              <Label>=Fields!Nombre.Value</Label>
+              <Label>=Fields!Trimestre.Value</Label>
             </ChartMember>
           </ChartMembers>
         </ChartCategoryHierarchy>
         <ChartSeriesHierarchy>
           <ChartMembers>
             <ChartMember>
-              <Label>Cantidad</Label>
+              <Label>Recuento H Mantenimiento</Label>
             </ChartMember>
           </ChartMembers>
         </ChartSeriesHierarchy>
         <ChartData>
           <ChartSeriesCollection>
-            <ChartSeries Name="Cantidad">
+            <ChartSeries Name="Recuento_H_Mantenimiento">
               <ChartDataPoints>
                 <ChartDataPoint>
                   <ChartDataPointValues>
-                    <Y>=Sum(Fields!Cantidad.Value)</Y>
+                    <Y>=Sum(Fields!Recuento_H_Mantenimiento.Value)</Y>
                   </ChartDataPointValues>
                   <ChartDataLabel>
                     <Style />
@@ -589,7 +585,6 @@
                   <DataElementOutput>Output</DataElementOutput>
                 </ChartDataPoint>
               </ChartDataPoints>
-              <Type>Bar</Type>
               <Style />
               <ChartEmptyPoints>
                 <Style />
@@ -617,12 +612,11 @@
                   <FontSize>8pt</FontSize>
                 </Style>
                 <ChartAxisTitle>
-                  <Caption>Nombre</Caption>
+                  <Caption>Trimestre</Caption>
                   <Style>
                     <FontSize>8pt</FontSize>
                   </Style>
                 </ChartAxisTitle>
-                <Interval>1</Interval>
                 <ChartMajorGridLines>
                   <Enabled>False</Enabled>
                   <Style>
@@ -693,7 +687,7 @@
                   <FontSize>8pt</FontSize>
                 </Style>
                 <ChartAxisTitle>
-                  <Caption>Consumo</Caption>
+                  <Caption>Mantenimiento</Caption>
                   <Style>
                     <FontSize>8pt</FontSize>
                   </Style>
@@ -767,7 +761,7 @@
         </ChartAreas>
         <ChartTitles>
           <ChartTitle Name="Default">
-            <Caption>Consumo por nombre</Caption>
+            <Caption>Mantenimiento Trimestral</Caption>
             <Style>
               <BackgroundGradientType>None</BackgroundGradientType>
               <FontWeight>Bold</FontWeight>
@@ -776,10 +770,11 @@
             </Style>
           </ChartTitle>
         </ChartTitles>
-        <Palette>Excel</Palette>
+        <Palette>Fire</Palette>
         <ChartBorderSkin>
+          <ChartBorderSkinType>FrameThin1</ChartBorderSkinType>
           <Style>
-            <BackgroundColor>Gray</BackgroundColor>
+            <BackgroundColor>Orange</BackgroundColor>
             <BackgroundGradientType>None</BackgroundGradientType>
             <Color>White</Color>
           </Style>
@@ -793,9 +788,10 @@
           </Style>
         </ChartNoDataMessage>
         <DataSetName>DataSet1</DataSetName>
-        <Top>10.15938cm</Top>
-        <Height>11.34745cm</Height>
-        <Width>14.13439cm</Width>
+        <Top>0.3175cm</Top>
+        <Left>15.0047cm</Left>
+        <Height>9.75933cm</Height>
+        <Width>18.27736cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -812,32 +808,32 @@
             <ChartMember>
               <Group Name="Chart4_CategoryGroup">
                 <GroupExpressions>
-                  <GroupExpression>=Fields!Id_Producto.Value</GroupExpression>
+                  <GroupExpression>=Fields!Id_Empleado.Value</GroupExpression>
                 </GroupExpressions>
               </Group>
               <SortExpressions>
                 <SortExpression>
-                  <Value>=Fields!Id_Producto.Value</Value>
+                  <Value>=Fields!Id_Empleado.Value</Value>
                 </SortExpression>
               </SortExpressions>
-              <Label>=Fields!Id_Producto.Value</Label>
+              <Label>=Fields!Id_Empleado.Value</Label>
             </ChartMember>
           </ChartMembers>
         </ChartCategoryHierarchy>
         <ChartSeriesHierarchy>
           <ChartMembers>
             <ChartMember>
-              <Label>Cantidad</Label>
+              <Label>Recuento H Mantenimiento</Label>
             </ChartMember>
           </ChartMembers>
         </ChartSeriesHierarchy>
         <ChartData>
           <ChartSeriesCollection>
-            <ChartSeries Name="Cantidad">
+            <ChartSeries Name="Recuento_H_Mantenimiento">
               <ChartDataPoints>
                 <ChartDataPoint>
                   <ChartDataPointValues>
-                    <Y>=Sum(Fields!Cantidad.Value)</Y>
+                    <Y>=Sum(Fields!Recuento_H_Mantenimiento.Value)</Y>
                   </ChartDataPointValues>
                   <ChartDataLabel>
                     <Style />
@@ -851,8 +847,6 @@
                   <DataElementOutput>Output</DataElementOutput>
                 </ChartDataPoint>
               </ChartDataPoints>
-              <Type>Shape</Type>
-              <Subtype>Funnel</Subtype>
               <Style />
               <ChartEmptyPoints>
                 <Style />
@@ -880,7 +874,7 @@
                   <FontSize>8pt</FontSize>
                 </Style>
                 <ChartAxisTitle>
-                  <Caption>Axis Title</Caption>
+                  <Caption>Id_Empleado</Caption>
                   <Style>
                     <FontSize>8pt</FontSize>
                   </Style>
@@ -955,7 +949,7 @@
                   <FontSize>8pt</FontSize>
                 </Style>
                 <ChartAxisTitle>
-                  <Caption>Axis Title</Caption>
+                  <Caption>Mantenimiento</Caption>
                   <Style>
                     <FontSize>8pt</FontSize>
                   </Style>
@@ -1027,27 +1021,9 @@
             </Style>
           </ChartArea>
         </ChartAreas>
-        <ChartLegends>
-          <ChartLegend Name="Default">
-            <Style>
-              <BackgroundGradientType>None</BackgroundGradientType>
-              <FontSize>8pt</FontSize>
-            </Style>
-            <ChartLegendTitle>
-              <Caption />
-              <Style>
-                <FontSize>8pt</FontSize>
-                <FontWeight>Bold</FontWeight>
-                <TextAlign>Center</TextAlign>
-              </Style>
-            </ChartLegendTitle>
-            <HeaderSeparatorColor>Black</HeaderSeparatorColor>
-            <ColumnSeparatorColor>Black</ColumnSeparatorColor>
-          </ChartLegend>
-        </ChartLegends>
         <ChartTitles>
           <ChartTitle Name="Default">
-            <Caption>Consumo por ID_Producto</Caption>
+            <Caption>Mantenimiento Por Id_Empleado</Caption>
             <Style>
               <BackgroundGradientType>None</BackgroundGradientType>
               <FontWeight>Bold</FontWeight>
@@ -1056,10 +1032,11 @@
             </Style>
           </ChartTitle>
         </ChartTitles>
-        <Palette>BrightPastel</Palette>
+        <Palette>SemiTransparent</Palette>
         <ChartBorderSkin>
+          <ChartBorderSkinType>FrameThin1</ChartBorderSkinType>
           <Style>
-            <BackgroundColor>Gray</BackgroundColor>
+            <BackgroundColor>HotPink</BackgroundColor>
             <BackgroundGradientType>None</BackgroundGradientType>
             <Color>White</Color>
           </Style>
@@ -1073,10 +1050,10 @@
           </Style>
         </ChartNoDataMessage>
         <DataSetName>DataSet1</DataSetName>
-        <Top>10.15938cm</Top>
-        <Left>14.31078cm</Left>
-        <Height>11.34745cm</Height>
-        <Width>16.7075cm</Width>
+        <Top>10.59656cm</Top>
+        <Left>15.0047cm</Left>
+        <Height>10.65891cm</Height>
+        <Width>16.47819cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -1088,10 +1065,10 @@
         </Style>
       </Chart>
     </ReportItems>
-    <Height>8.84225in</Height>
+    <Height>8.3683in</Height>
     <Style />
   </Body>
-  <Width>12.53484in</Width>
+  <Width>13.10317in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
@@ -1111,14 +1088,14 @@
         <IntegratedSecurity>true</IntegratedSecurity>
       </ConnectionProperties>
       <rd:SecurityType>Integrated</rd:SecurityType>
-      <rd:DataSourceID>c5f97fcd-f38b-49ae-b804-0dc80c8d726e</rd:DataSourceID>
+      <rd:DataSourceID>744629dd-59ef-4c10-8b95-c54cf2a520f2</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
         <DataSourceName>DataSource1</DataSourceName>
-        <CommandText> SELECT NON EMPTY { [Measures].[Cantidad] } ON COLUMNS, NON EMPTY { ([Dim Tiempo 2].[Mes Nombre].[Mes Nombre].ALLMEMBERS * [Dim Producto].[Precio Venta].[Precio Venta].ALLMEMBERS * [Dim Producto].[Id Producto].[Id Producto].ALLMEMBERS * [Dim Producto].[Nombre].[Nombre].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_UNIQUE_NAME ON ROWS FROM [Consumo] CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</CommandText>
+        <CommandText> SELECT NON EMPTY { [Measures].[Recuento H Mantenimiento] } ON COLUMNS, NON EMPTY { ([Dim Tiempo 1].[Mes Nombre].[Mes Nombre].ALLMEMBERS * [Dim Empleados].[Primer Apellido].[Primer Apellido].ALLMEMBERS * [Dim Tiempo 1].[Trimestre].[Trimestre].ALLMEMBERS * [Dim Empleados].[Id Empleado].[Id Empleado].ALLMEMBERS * [Dim Empleados].[Primer Nombre].[Primer Nombre].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_UNIQUE_NAME ON ROWS FROM [Mantenimiento] CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</CommandText>
         <rd:DesignerState>
           <QueryDefinition xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition">
             <CommandType>MDX</CommandType>
@@ -1127,54 +1104,65 @@
                 <Items>
                   <Item>
                     <ID xsi:type="Level">
-                      <DimensionName>Dim Tiempo 2</DimensionName>
+                      <DimensionName>Dim Tiempo 1</DimensionName>
                       <HierarchyName>Mes Nombre</HierarchyName>
-                      <HierarchyUniqueName>[Dim Tiempo 2].[Mes Nombre]</HierarchyUniqueName>
+                      <HierarchyUniqueName>[Dim Tiempo 1].[Mes Nombre]</HierarchyUniqueName>
                       <LevelName>Mes Nombre</LevelName>
-                      <UniqueName>[Dim Tiempo 2].[Mes Nombre].[Mes Nombre]</UniqueName>
+                      <UniqueName>[Dim Tiempo 1].[Mes Nombre].[Mes Nombre]</UniqueName>
                     </ID>
                     <ItemCaption>Mes Nombre</ItemCaption>
                     <UniqueName>true</UniqueName>
                   </Item>
                   <Item>
                     <ID xsi:type="Level">
-                      <DimensionName>Dim Producto</DimensionName>
-                      <HierarchyName>Precio Venta</HierarchyName>
-                      <HierarchyUniqueName>[Dim Producto].[Precio Venta]</HierarchyUniqueName>
-                      <LevelName>Precio Venta</LevelName>
-                      <UniqueName>[Dim Producto].[Precio Venta].[Precio Venta]</UniqueName>
+                      <DimensionName>Dim Empleados</DimensionName>
+                      <HierarchyName>Primer Apellido</HierarchyName>
+                      <HierarchyUniqueName>[Dim Empleados].[Primer Apellido]</HierarchyUniqueName>
+                      <LevelName>Primer Apellido</LevelName>
+                      <UniqueName>[Dim Empleados].[Primer Apellido].[Primer Apellido]</UniqueName>
                     </ID>
-                    <ItemCaption>Precio Venta</ItemCaption>
+                    <ItemCaption>Primer Apellido</ItemCaption>
                     <UniqueName>true</UniqueName>
                   </Item>
                   <Item>
                     <ID xsi:type="Level">
-                      <DimensionName>Dim Producto</DimensionName>
-                      <HierarchyName>Id Producto</HierarchyName>
-                      <HierarchyUniqueName>[Dim Producto].[Id Producto]</HierarchyUniqueName>
-                      <LevelName>Id Producto</LevelName>
-                      <UniqueName>[Dim Producto].[Id Producto].[Id Producto]</UniqueName>
+                      <DimensionName>Dim Tiempo 1</DimensionName>
+                      <HierarchyName>Trimestre</HierarchyName>
+                      <HierarchyUniqueName>[Dim Tiempo 1].[Trimestre]</HierarchyUniqueName>
+                      <LevelName>Trimestre</LevelName>
+                      <UniqueName>[Dim Tiempo 1].[Trimestre].[Trimestre]</UniqueName>
                     </ID>
-                    <ItemCaption>Id Producto</ItemCaption>
+                    <ItemCaption>Trimestre</ItemCaption>
                     <UniqueName>true</UniqueName>
                   </Item>
                   <Item>
                     <ID xsi:type="Level">
-                      <DimensionName>Dim Producto</DimensionName>
-                      <HierarchyName>Nombre</HierarchyName>
-                      <HierarchyUniqueName>[Dim Producto].[Nombre]</HierarchyUniqueName>
-                      <LevelName>Nombre</LevelName>
-                      <UniqueName>[Dim Producto].[Nombre].[Nombre]</UniqueName>
+                      <DimensionName>Dim Empleados</DimensionName>
+                      <HierarchyName>Id Empleado</HierarchyName>
+                      <HierarchyUniqueName>[Dim Empleados].[Id Empleado]</HierarchyUniqueName>
+                      <LevelName>Id Empleado</LevelName>
+                      <UniqueName>[Dim Empleados].[Id Empleado].[Id Empleado]</UniqueName>
                     </ID>
-                    <ItemCaption>Nombre</ItemCaption>
+                    <ItemCaption>Id Empleado</ItemCaption>
+                    <UniqueName>true</UniqueName>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Level">
+                      <DimensionName>Dim Empleados</DimensionName>
+                      <HierarchyName>Primer Nombre</HierarchyName>
+                      <HierarchyUniqueName>[Dim Empleados].[Primer Nombre]</HierarchyUniqueName>
+                      <LevelName>Primer Nombre</LevelName>
+                      <UniqueName>[Dim Empleados].[Primer Nombre].[Primer Nombre]</UniqueName>
+                    </ID>
+                    <ItemCaption>Primer Nombre</ItemCaption>
                     <UniqueName>true</UniqueName>
                   </Item>
                   <Item>
                     <ID xsi:type="Measure">
-                      <MeasureName>Cantidad</MeasureName>
-                      <UniqueName>[Measures].[Cantidad]</UniqueName>
+                      <MeasureName>Recuento H Mantenimiento</MeasureName>
+                      <UniqueName>[Measures].[Recuento H Mantenimiento]</UniqueName>
                     </ID>
-                    <ItemCaption>Cantidad</ItemCaption>
+                    <ItemCaption>Recuento H Mantenimiento</ItemCaption>
                     <BackColor>true</BackColor>
                     <ForeColor>true</ForeColor>
                     <FontFamily>true</FontFamily>
@@ -1187,7 +1175,7 @@
                   </Item>
                 </Items>
               </Select>
-              <From>Consumo</From>
+              <From>Mantenimiento</From>
               <Filter>
                 <FilterItems />
               </Filter>
@@ -1196,7 +1184,7 @@
               <QueryProperties />
             </QuerySpecification>
             <Query>
-              <Statement> SELECT NON EMPTY { [Measures].[Cantidad] } ON COLUMNS, NON EMPTY { ([Dim Tiempo 2].[Mes Nombre].[Mes Nombre].ALLMEMBERS * [Dim Producto].[Precio Venta].[Precio Venta].ALLMEMBERS * [Dim Producto].[Id Producto].[Id Producto].ALLMEMBERS * [Dim Producto].[Nombre].[Nombre].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_UNIQUE_NAME ON ROWS FROM [Consumo] CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</Statement>
+              <Statement> SELECT NON EMPTY { [Measures].[Recuento H Mantenimiento] } ON COLUMNS, NON EMPTY { ([Dim Tiempo 1].[Mes Nombre].[Mes Nombre].ALLMEMBERS * [Dim Empleados].[Primer Apellido].[Primer Apellido].ALLMEMBERS * [Dim Tiempo 1].[Trimestre].[Trimestre].ALLMEMBERS * [Dim Empleados].[Id Empleado].[Id Empleado].ALLMEMBERS * [Dim Empleados].[Primer Nombre].[Primer Nombre].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_UNIQUE_NAME ON ROWS FROM [Mantenimiento] CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</Statement>
               <ParameterDefinitions />
             </Query>
           </QueryDefinition>
@@ -1204,28 +1192,32 @@
       </Query>
       <Fields>
         <Field Name="Mes_Nombre">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Dim Tiempo 2].[Mes Nombre].[Mes Nombre]" /&gt;</DataField>
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Dim Tiempo 1].[Mes Nombre].[Mes Nombre]" /&gt;</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Precio_Venta">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Dim Producto].[Precio Venta].[Precio Venta]" /&gt;</DataField>
+        <Field Name="Primer_Apellido">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Dim Empleados].[Primer Apellido].[Primer Apellido]" /&gt;</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Id_Producto">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Dim Producto].[Id Producto].[Id Producto]" /&gt;</DataField>
+        <Field Name="Trimestre">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Dim Tiempo 1].[Trimestre].[Trimestre]" /&gt;</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Nombre">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Dim Producto].[Nombre].[Nombre]" /&gt;</DataField>
+        <Field Name="Id_Empleado">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Dim Empleados].[Id Empleado].[Id Empleado]" /&gt;</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Cantidad">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Cantidad]" /&gt;</DataField>
+        <Field Name="Primer_Nombre">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Dim Empleados].[Primer Nombre].[Primer Nombre]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Recuento_H_Mantenimiento">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Recuento H Mantenimiento]" /&gt;</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
   </DataSets>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
-  <rd:ReportID>56ef3aa0-329b-47d5-9b7e-f5a67b47c19a</rd:ReportID>
+  <rd:ReportID>9b2738bd-3c6a-477c-9adf-c044bc0a3844</rd:ReportID>
 </Report>

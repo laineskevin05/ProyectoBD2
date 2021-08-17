@@ -5,16 +5,16 @@
   <DataSets />
   <Reports>
     <ProjectItem>
-      <Name>Comentarios.rdl</Name>
-      <FullPath>Comentarios.rdl</FullPath>
-    </ProjectItem>
-    <ProjectItem>
       <Name>Consumo.rdl</Name>
       <FullPath>Consumo.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>Mantenimiento.rdl</Name>
-      <FullPath>Mantenimiento.rdl</FullPath>
+      <Name>mantenimiento.rdl</Name>
+      <FullPath>mantenimiento.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>comentarios.rdl</Name>
+      <FullPath>comentarios.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
       <Name>Reservaciones.rdl</Name>
