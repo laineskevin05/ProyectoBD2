@@ -218,7 +218,7 @@ def llenadoSolicitudes_y_Mantenimientos(numero):
 
             cursor.execute("SELECT IdHabitacion FROM A_Habitaciones;")
             listaHabitaciones = cursor.fetchall()
-            cursor.execute("SELECT IdEmpleado FROM RH_Empleado;")
+            cursor.execute("SELECT IdEmpleado FROM RH_Empleado WHERE Cargo = 'Mantenimiento';")
             listaEmpleados = cursor.fetchall()
 
             for i in range(numero):
